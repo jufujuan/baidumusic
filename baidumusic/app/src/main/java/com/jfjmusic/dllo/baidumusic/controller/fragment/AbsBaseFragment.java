@@ -5,10 +5,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
 
+import com.jfjmusic.dllo.baidumusic.R;
 import com.jfjmusic.dllo.baidumusic.controller.activity.AbsBaseActivity;
 
 /**
@@ -16,7 +22,7 @@ import com.jfjmusic.dllo.baidumusic.controller.activity.AbsBaseActivity;
  * Fragment的基类
  */
 public abstract class AbsBaseFragment extends Fragment{
-
+    private FragmentTransaction mFragmentTransaction;
     protected Context context;
 
     @Override
@@ -44,6 +50,33 @@ public abstract class AbsBaseFragment extends Fragment{
         //初始化数据
         initDatas();
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        /**
+         * 添加动画
+         */
+        addAnimator();
+    }
+    protected void addAnimator(){
+//        FragmentTransaction fragmentTransaction = getFragmentManager()
+//                .beginTransaction();
+//        fragmentTransaction.setCustomAnimations(
+//                R.anim.cube_left_in,
+//                R.anim.cube_left_out,R.anim.cube_right_in,R.anim.cube_right_out);
+//
+//        /**
+//         * 参数一:换位布局
+//         * 参数二:将要替换的fragment
+//         */
+//        TBB tbb=new TBB();
+//        fragmentTransaction.replace(R.id.f, tbb);
+//
+//        fragmentTransaction.addToBackStack(null);
+//        fragmentTransaction.commit();
+    }
+
 
     /**
      * 设置布局
@@ -80,6 +113,7 @@ public abstract class AbsBaseFragment extends Fragment{
          * 必须使用getActivity()或者context
          */
         context.startActivity(new Intent(context, to));
+        addAnimator();
     }
     /**
      * 跳转传值
@@ -92,5 +126,6 @@ public abstract class AbsBaseFragment extends Fragment{
          * 必须使用getActivity()或者context
          */
         context.startActivity(intent);
+        addAnimator();
     }
 }
