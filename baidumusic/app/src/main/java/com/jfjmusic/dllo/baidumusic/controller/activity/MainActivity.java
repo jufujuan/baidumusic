@@ -9,6 +9,9 @@ import android.support.v4.view.ViewPager;
 import com.jfjmusic.dllo.baidumusic.R;
 import com.jfjmusic.dllo.baidumusic.controller.adapter.MainAcViewPagerAdapter;
 import com.jfjmusic.dllo.baidumusic.controller.fragment.AbsBaseFragment;
+import com.jfjmusic.dllo.baidumusic.controller.fragment.KtvFragment;
+import com.jfjmusic.dllo.baidumusic.controller.fragment.LiveRadioFragment;
+import com.jfjmusic.dllo.baidumusic.controller.fragment.MineFragment;
 import com.jfjmusic.dllo.baidumusic.controller.fragment.MusicLibraryFragment;
 
 import java.util.ArrayList;
@@ -51,10 +54,10 @@ public class MainActivity extends AbsBaseActivity{
 
     @Override
     protected void initDatas() {
+        fragments.add(new MineFragment());
         fragments.add(new MusicLibraryFragment());
-        fragments.add(new MusicLibraryFragment());
-        fragments.add(new MusicLibraryFragment());
-        fragments.add(new MusicLibraryFragment());
+        fragments.add(new KtvFragment());
+        fragments.add(new LiveRadioFragment());
 
         title.add("我的");
         title.add("乐库");
