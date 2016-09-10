@@ -1,11 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<!--  一级界面k歌  -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:gravity="center"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="k歌"/>
-</LinearLayout>
+        android:layout_height="match_parent">
+        <!--搜索框-->
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_margin="5dp"
+            android:background="@drawable/fra_ktv_search_boder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@mipmap/ic_mike_normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <!--注意这里不是EditText,因为点击后会跳转界面,并没有输入东西-->
+            <TextView
+                android:text="搜索k歌伴奏"
+                android:textSize="10sp"
+                android:textColor="#878585"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <!--轮播图-->
+        <!--暂时用来占位-->
+        <View
+            android:background="#2aa0d7"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"/>
+        <!--六大分类图片-->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!--KTV热歌榜-->
+            <LinearLayout
+                android:layout_margin="10dp"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:src="@mipmap/img_k_ktv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="KTV热歌榜"/>
+            </LinearLayout>
+            <!--华语金曲-->
+            <LinearLayout
+                android:layout_margin="10dp"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:src="@mipmap/img_k_chinese"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="华语金曲"/>
+            </LinearLayout>
+            <!--欧美经典-->
+            <LinearLayout
+                android:layout_margin="10dp"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:src="@mipmap/img_k_occident"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="欧美经典"/>
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!--男歌手-->
+            <LinearLayout
+                android:layout_margin="10dp"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:src="@mipmap/img_k_man"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="男歌手"/>
+            </LinearLayout>
+            <!--女歌手-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:src="@mipmap/img_k_woman"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="女歌手"/>
+            </LinearLayout>
+            <!--乐队组合-->
+            <LinearLayout
+                android:layout_margin="10dp"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:src="@mipmap/img_k_band"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="乐队组合"/>
+            </LinearLayout>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#aeadad"/>
+        <!--大家都在唱-->
+        <LinearLayout
+
+            android:layout_margin="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:background="#62b2f9"
+                android:layout_width="5dp"
+                android:layout_height="match_parent" />
+            <TextView
+                android:text="大家都在唱"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <ListView
+            android:id="@+id/fra_ktv_listview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </ListView>
+
+    </LinearLayout>
+</ScrollView>
