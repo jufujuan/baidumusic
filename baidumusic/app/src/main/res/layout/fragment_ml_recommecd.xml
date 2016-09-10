@@ -92,14 +92,15 @@
         </LinearLayout>
         <!--歌单推荐-->
         <LinearLayout
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
+                style="@style/FragmentRecommendImgLeft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"/>
+                android:src="@mipmap/ic_recommend_song"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -110,9 +111,9 @@
                 android:layout_height="wrap_content"
                 android:text="更多"/>
             <ImageView
+                style="@style/FragmentRecommendImgRight"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"/>
+                android:layout_height="wrap_content"/>
         </LinearLayout>
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
@@ -121,14 +122,15 @@
         </android.support.v7.widget.RecyclerView>
         <!--新碟推荐-->
         <LinearLayout
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
+                style="@style/FragmentRecommendImgLeft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"/>
+                android:src="@mipmap/ic_recommend_song"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -139,9 +141,9 @@
                 android:layout_height="wrap_content"
                 android:text="更多"/>
             <ImageView
+                style="@style/FragmentRecommendImgRight"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"/>
+                android:layout_height="wrap_content"/>
         </LinearLayout>
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
@@ -150,14 +152,15 @@
         </android.support.v7.widget.RecyclerView>
         <!--热销专辑-->
         <LinearLayout
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
+                style="@style/FragmentRecommendImgLeft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"/>
+                android:src="@mipmap/ic_recommend_song"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -168,9 +171,9 @@
                 android:layout_height="wrap_content"
                 android:text="更多"/>
             <ImageView
+                style="@style/FragmentRecommendImgRight"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"/>
+                android:layout_height="wrap_content"/>
         </LinearLayout>
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
@@ -179,14 +182,15 @@
         </android.support.v7.widget.RecyclerView>
         <!--场景电台-->
         <LinearLayout
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
+                style="@style/FragmentRecommendImgLeft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"/>
+                android:src="@mipmap/ic_recommend_song"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -197,9 +201,9 @@
                 android:layout_height="wrap_content"
                 android:text="更多"/>
             <ImageView
+                style="@style/FragmentRecommendImgRight"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"/>
+                android:layout_height="wrap_content"/>
         </LinearLayout>
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
@@ -208,14 +212,15 @@
         </android.support.v7.widget.RecyclerView>
         <!--今日推荐歌曲-->
         <LinearLayout
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
+                style="@style/FragmentRecommendImgLeft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"/>
+                android:src="@mipmap/ic_recommend_song"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -226,9 +231,9 @@
                 android:layout_height="wrap_content"
                 android:text="更多"/>
             <ImageView
+                style="@style/FragmentRecommendImgRight"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"/>
+                android:layout_height="wrap_content"/>
         </LinearLayout>
         <ListView
             android:layout_width="match_parent"
@@ -237,14 +242,15 @@
         </ListView>
         <!--原创音乐-->
         <LinearLayout
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
+                style="@style/FragmentRecommendImgLeft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"/>
+                android:src="@mipmap/ic_recommend_song"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -255,9 +261,9 @@
                 android:layout_height="wrap_content"
                 android:text="更多"/>
             <ImageView
+                style="@style/FragmentRecommendImgRight"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"/>
+                android:layout_height="wrap_content"/>
         </LinearLayout>
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
@@ -266,14 +272,15 @@
         </android.support.v7.widget.RecyclerView>
         <!--最热MV推荐-->
         <LinearLayout
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
+                style="@style/FragmentRecommendImgLeft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"/>
+                android:src="@mipmap/ic_recommend_song"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -284,9 +291,9 @@
                 android:layout_height="wrap_content"
                 android:text="更多"/>
             <ImageView
+                style="@style/FragmentRecommendImgRight"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"/>
+                android:layout_height="wrap_content"/>
         </LinearLayout>
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
@@ -295,14 +302,15 @@
         </android.support.v7.widget.RecyclerView>
         <!--乐播节目-->
         <LinearLayout
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
+                style="@style/FragmentRecommendImgLeft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"/>
+                android:src="@mipmap/ic_recommend_song"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -313,9 +321,9 @@
                 android:layout_height="wrap_content"
                 android:text="更多"/>
             <ImageView
+                style="@style/FragmentRecommendImgRight"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"/>
+                android:layout_height="wrap_content"/>
         </LinearLayout>
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
@@ -324,14 +332,15 @@
         </android.support.v7.widget.RecyclerView>
         <!--专栏-->
         <LinearLayout
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
+                style="@style/FragmentRecommendImgLeft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"/>
+                android:src="@mipmap/ic_recommend_song"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -342,9 +351,9 @@
                 android:layout_height="wrap_content"
                 android:text="更多"/>
             <ImageView
+                style="@style/FragmentRecommendImgRight"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"/>
+                android:layout_height="wrap_content"/>
         </LinearLayout>
         <ListView
             android:layout_width="match_parent"

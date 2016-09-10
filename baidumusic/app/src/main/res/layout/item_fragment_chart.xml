@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <!--榜单图片-->
+    <LinearLayout
+        android:layout_margin="7dp"
+        android:layout_width="0dp"
+        android:layout_weight="0.7"
+        android:layout_height="match_parent"
+        android:gravity="bottom|right"
+        android:background="@mipmap/new_song">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/fra_chart_small_icon" />
+    </LinearLayout>
+    <!--榜单前三名-->
+    <LinearLayout
+        android:layout_margin="7dp"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_weight="3"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="XX榜"
+            android:textColor="#131313"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="1 第一名"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="2 第二名"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="3 第三名"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <!--更多-->
+    <ImageView
+        android:layout_margin="5dp"
+        android:src="@mipmap/ic_action_more"
+        android:layout_width="0dp"
+        android:layout_weight="0.2"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

@@ -46,6 +46,16 @@
         <item name="android:layout_marginRight">10dp</item>
         <item name="android:background">#cac8c8</item>
     </style>
+    <!--recommendFragment的item的左边的图标-->
+    <style name="FragmentRecommendImgLeft">
+        <item name="android:layout_margin">7dp</item>
+    </style>
+    <!--recommendFragment的item的右边的图标-->
+    <style name="FragmentRecommendImgRight">
+        <item name="android:layout_margin">7dp</item>
+        <item name="android:src">@mipmap/ic_action_more</item>
+    </style>
+
 
 
 </resources>
