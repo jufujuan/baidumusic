@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?><!--我的fragment-->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
 
     <RelativeLayout
         android:background="#06a8f2"
         android:layout_width="match_parent"
         android:layout_height="120dp">
         <ImageView
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/fra_mymusic_try"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -17,11 +21,13 @@
     </RelativeLayout>
     <!--本地音乐-->
     <LinearLayout
+        style="@style/FragmentMine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <ImageView
+            android:src="@mipmap/ic_mymusic_local_normal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
@@ -48,6 +54,7 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:src="@mipmap/ic_mymusic_play_normal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
@@ -74,6 +81,7 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:src="@mipmap/ic_mymusic_download_normal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
@@ -100,6 +108,7 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:src="@mipmap/ic_mymusic_ktv_normal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
@@ -131,6 +140,7 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:src="@mipmap/ic_mymusic_like"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
@@ -157,6 +167,7 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:src="@mipmap/ic_mymusic_add_nor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
@@ -199,4 +210,5 @@
 
     </LinearLayout>
 
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>
