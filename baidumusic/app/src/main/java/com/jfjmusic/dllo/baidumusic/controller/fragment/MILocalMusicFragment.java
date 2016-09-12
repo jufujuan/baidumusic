@@ -8,6 +8,9 @@ import com.jfjmusic.dllo.baidumusic.R;
  * Created by dllo on 16/9/12.
  */
 public class MILocalMusicFragment extends AbsBaseFragment{
+
+
+
     public static MILocalMusicFragment newInstance() {
 
         Bundle args = new Bundle();
@@ -29,5 +32,10 @@ public class MILocalMusicFragment extends AbsBaseFragment{
     @Override
     protected void initDatas() {
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 }

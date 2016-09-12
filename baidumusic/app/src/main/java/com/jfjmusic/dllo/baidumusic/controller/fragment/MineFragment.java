@@ -45,6 +45,9 @@ public class MineFragment extends AbsBaseFragment implements View.OnClickListene
         localMusicFragment=new MILocalMusicFragment();
         manager=getFragmentManager();
         transaction=manager.beginTransaction();
+        /*********/
+        transaction.addToBackStack(null);
+        /*********/
         //各种点击事件进入二级界面
         enterNextFragmentListener();
     }

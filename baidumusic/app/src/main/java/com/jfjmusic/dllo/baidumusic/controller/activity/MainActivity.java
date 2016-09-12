@@ -46,6 +46,9 @@ public class MainActivity extends AbsBaseActivity {
          * 默认替换的占位布局
          */
         mTransaction.replace(R.id.main_framelayout, mainFragment);
+        /******/
+        mTransaction.addToBackStack(null);
+        /******/
         mTransaction.commit();
 
     }
