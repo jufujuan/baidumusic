@@ -81,6 +81,7 @@
             android:layout_height="1dp" />
         <!--最近播放-->
         <LinearLayout
+            android:id="@+id/fra_current_play_item"
             style="@style/FragmentMineItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -5,10 +5,10 @@ import com.jfjmusic.dllo.baidumusic.R;
 /**
  * Created by dllo on 16/9/12.
  */
-public class LocalMusicFragment extends AbsBaseFragment{
+public class MICurrentPlayFragment extends AbsBaseFragment{
     @Override
     protected int setLayout() {
-        return R.layout.fragment_local_music;
+        return R.layout.fragment_mi_current_play;
     }
 
     @Override
