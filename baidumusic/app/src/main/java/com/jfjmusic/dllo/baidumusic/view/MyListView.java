@@ -9,23 +9,23 @@ import android.widget.ListView;
 /**
  * Created by dllo on 16/9/10.
  */
-public class ExpandListView extends ListView{
+public class MyListView extends ListView{
 
 
-    public ExpandListView(Context context) {
+    public MyListView(Context context) {
         super(context);
     }
 
-    public ExpandListView(Context context, AttributeSet attrs) {
+    public MyListView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public ExpandListView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public MyListView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public ExpandListView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public MyListView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 

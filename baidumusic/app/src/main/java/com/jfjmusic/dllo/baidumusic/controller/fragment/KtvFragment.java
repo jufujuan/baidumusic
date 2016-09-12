@@ -6,6 +6,7 @@ import android.widget.ListView;
 import com.jfjmusic.dllo.baidumusic.R;
 import com.jfjmusic.dllo.baidumusic.controller.adapter.KtvListViewAdapter;
 import com.jfjmusic.dllo.baidumusic.model.bean.KtvAllSingBean;
+import com.jfjmusic.dllo.baidumusic.view.MyListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.List;
  */
 public class KtvFragment extends AbsBaseFragment{
 
-    private ExpandableListView listView;
+    private MyListView listView;
     private List<KtvAllSingBean> datas;
     private KtvListViewAdapter mAdapter;
 
