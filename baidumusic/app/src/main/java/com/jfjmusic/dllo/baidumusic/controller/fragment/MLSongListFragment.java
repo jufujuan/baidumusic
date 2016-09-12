@@ -1,5 +1,7 @@
 package com.jfjmusic.dllo.baidumusic.controller.fragment;
 
+import android.os.Bundle;
+
 import com.jfjmusic.dllo.baidumusic.R;
 import com.jfjmusic.dllo.baidumusic.model.net.VolleyInatance;
 import com.jfjmusic.dllo.baidumusic.model.net.VolleyResult;
@@ -12,6 +14,14 @@ public class MLSongListFragment extends AbsBaseFragment{
 
     private String url="http://tingapi.ting.baidu.com/v1/restserver/ting?method=baidu.ting.diy.gedan&page_no=1&page_size=30&from=ios&version=5.2.3&from=ios&channel=appstore";
 
+    public static MLSongListFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        MLSongListFragment fragment = new MLSongListFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
     @Override
     protected int setLayout() {
         return R.layout.fragment_ml_song_list;

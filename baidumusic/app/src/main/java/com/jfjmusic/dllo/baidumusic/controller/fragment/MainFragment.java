@@ -1,6 +1,7 @@
 package com.jfjmusic.dllo.baidumusic.controller.fragment;
 
 
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 
@@ -32,6 +33,16 @@ public class MainFragment extends AbsBaseFragment{
      * viewpager的适配器
      */
     MainFraViewPagerAdapter mAdapter;
+
+    public static MainFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        MainFragment fragment = new MainFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     protected int setLayout() {
         return R.layout.fragment_main_ac_content;
@@ -48,10 +59,10 @@ public class MainFragment extends AbsBaseFragment{
 
     @Override
     protected void initDatas() {
-        fragments.add(new MineFragment());
-        fragments.add(new MusicLibraryFragment());
-        fragments.add(new KtvFragment());
-        fragments.add(new LiveRadioFragment());
+        fragments.add(MineFragment.newInstance());
+        fragments.add(MusicLibraryFragment.newInstance());
+        fragments.add(KtvFragment.newInstance());
+        fragments.add(LiveRadioFragment.newInstance());
 
         title.add("我的");
         title.add("乐库");

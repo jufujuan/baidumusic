@@ -1,5 +1,6 @@
 package com.jfjmusic.dllo.baidumusic.controller.fragment;
 
+import android.os.Bundle;
 import android.widget.ListView;
 
 import com.jfjmusic.dllo.baidumusic.R;
@@ -23,6 +24,14 @@ public class MLChartFragment extends AbsBaseFragment{
     private ListView listView;
     private String url="http://tingapi.ting.baidu.com/v1/restserver/ting?method=baidu.ting.billboard.billCategory&format=json&from=ios&version=5.2.1&from=ios&channel=appstore";
 
+    public static MLChartFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        MLChartFragment fragment = new MLChartFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
     @Override
     protected int setLayout() {
         return R.layout.fragment_ml_chart;

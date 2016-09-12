@@ -1,6 +1,7 @@
 package com.jfjmusic.dllo.baidumusic.controller.fragment;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -20,7 +21,14 @@ public class MineFragment extends AbsBaseFragment implements View.OnClickListene
     private FragmentManager manager;
     private FragmentTransaction transaction;
 
+    public static MineFragment newInstance() {
 
+        Bundle args = new Bundle();
+
+        MineFragment fragment = new MineFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
     @Override
     protected int setLayout() {
         return R.layout.fragment_mine;

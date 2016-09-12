@@ -71,11 +71,11 @@ public class MainActivity extends AbsBaseActivity {
                         break;
                     case Unique.MINE_LOCAL_MUSIC_TYPE:
                         //如果是"本地音乐"传来的广播
-                        mineTransaction.replace(R.id.main_framelayout, new MILocalMusicFragment());
+                        mineTransaction.replace(R.id.main_framelayout, MILocalMusicFragment.newInstance());
                         break;
                     case Unique.MINE_CURRENT_PLAY_TYPE:
                         //如果是"最近播放"传来的广播
-                        mineTransaction.replace(R.id.main_framelayout, new MICurrentPlayFragment());
+                        mineTransaction.replace(R.id.main_framelayout, MICurrentPlayFragment.newInstance());
                         break;
 
                 }

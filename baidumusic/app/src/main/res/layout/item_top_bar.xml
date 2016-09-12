@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--上方标题返回栏-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#1a96ef"
+    android:gravity="center_vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <!--返回键-->
+    <ImageView
+        android:id="@+id/item_top_bar_back_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher"/>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="本地音乐"/>
+    <!--搜索歌曲-->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher"/>
+    <!--扫描歌曲-->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher"/>
+    <!--排序方法-->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher"/>
+</LinearLayout>

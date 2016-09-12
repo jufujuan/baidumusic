@@ -1,5 +1,6 @@
 package com.jfjmusic.dllo.baidumusic.controller.fragment;
 
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -21,6 +22,15 @@ public class MusicLibraryFragment extends AbsBaseFragment{
     private MusicLibraryFraViewPagerAdapter adapter;
     private List<String> title;
     private List<Fragment> fragments;
+
+    public static MusicLibraryFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        MusicLibraryFragment fragment = new MusicLibraryFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     protected int setLayout() {
@@ -46,11 +56,11 @@ public class MusicLibraryFragment extends AbsBaseFragment{
         title.add("歌单");
         title.add("电台");
         title.add("MV");
-        fragments.add(new MLRecommendFragment());
-        fragments.add(new MLChartFragment());
-        fragments.add(new MLSongListFragment());
-        fragments.add(new MLRadioFragment());
-        fragments.add(new MLMvFragment());
+        fragments.add(MLRecommendFragment.newInstance());
+        fragments.add(MLChartFragment.newInstance());
+        fragments.add(MLSongListFragment.newInstance());
+        fragments.add(MLRadioFragment.newInstance());
+        fragments.add(MLMvFragment.newInstance());
         adapter.setTitle(title);
         adapter.setFragments(fragments);
         mViewPager.setAdapter(adapter);

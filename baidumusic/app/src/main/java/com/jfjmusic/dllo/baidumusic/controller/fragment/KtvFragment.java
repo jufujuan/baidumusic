@@ -1,5 +1,6 @@
 package com.jfjmusic.dllo.baidumusic.controller.fragment;
 
+import android.os.Bundle;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
 
@@ -20,6 +21,19 @@ public class KtvFragment extends AbsBaseFragment{
     private MyListView listView;
     private List<KtvAllSingBean> datas;
     private KtvListViewAdapter mAdapter;
+    // 最新的写法
+    // 向fragment传值 setArguments
+    // getArguments
+    // 对应的就是Activity传值时的 intent.putExtra
+    //                       intent.getXXExtra
+    public static KtvFragment newInstance() {
+        
+        Bundle args = new Bundle();
+        
+        KtvFragment fragment = new KtvFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     protected int setLayout() {
