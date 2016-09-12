@@ -1,41 +1,19 @@
 package com.jfjmusic.dllo.baidumusic.controller.activity;
 
 
-
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 
 import com.jfjmusic.dllo.baidumusic.R;
-import com.jfjmusic.dllo.baidumusic.controller.adapter.MainAcViewPagerAdapter;
-import com.jfjmusic.dllo.baidumusic.controller.fragment.AbsBaseFragment;
-import com.jfjmusic.dllo.baidumusic.controller.fragment.KtvFragment;
-import com.jfjmusic.dllo.baidumusic.controller.fragment.LiveRadioFragment;
-import com.jfjmusic.dllo.baidumusic.controller.fragment.MineFragment;
-import com.jfjmusic.dllo.baidumusic.controller.fragment.MusicLibraryFragment;
+import com.jfjmusic.dllo.baidumusic.controller.fragment.MainFragment;
+import com.jfjmusic.dllo.baidumusic.utils.OnSwitchpaperListener;
 
-import java.util.ArrayList;
-import java.util.List;
+public class MainActivity extends AbsBaseActivity {
 
-public class MainActivity extends AbsBaseActivity{
+    private FragmentManager mFragmentManager;
+    private FragmentTransaction mTransaction;
+    private MainFragment mainFragment;
 
-    /**
-     * 布局中控件的声明
-     */
-    private TabLayout mTabLayout;
-    private ViewPager mViewPager;
-
-    /**
-     * fragment的集合
-     * title的集合
-     */
-    List<AbsBaseFragment> fragments;
-    List<String> title;
-
-    /**
-     * viewpager的适配器
-     */
-    MainAcViewPagerAdapter mAdapter;
 
 
     @Override
@@ -45,28 +23,19 @@ public class MainActivity extends AbsBaseActivity{
 
     @Override
     protected void initViews() {
-        mTabLayout=byView(R.id.main_tablayout);
-        mViewPager=byView(R.id.main_viewpager);
-        fragments=new ArrayList<>();
-        title=new ArrayList<>();
-        mAdapter=new MainAcViewPagerAdapter(getSupportFragmentManager(),this);
+        mFragmentManager = getSupportFragmentManager();
+        mTransaction = mFragmentManager.beginTransaction();
+        mainFragment = new MainFragment();
     }
 
     @Override
     protected void initDatas() {
-        fragments.add(new MineFragment());
-        fragments.add(new MusicLibraryFragment());
-        fragments.add(new KtvFragment());
-        fragments.add(new LiveRadioFragment());
-
-        title.add("我的");
-        title.add("乐库");
-        title.add("k歌");
-        title.add("直播");
-
-        mAdapter.setFragments(fragments);
-        mAdapter.setTitle(title);
-        mViewPager.setAdapter(mAdapter);
-        mTabLayout.setupWithViewPager(mViewPager);
+        /**
+         * 替换占位布局
+         */
+        mTransaction.replace(R.id.main_framelayout, mainFragment);
+        mTransaction.commit();
     }
+
+
 }

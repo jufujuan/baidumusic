@@ -41,6 +41,7 @@
         </RelativeLayout>
         <!--本地音乐-->
         <LinearLayout
+            android:id="@+id/fra_local_music_item"
             style="@style/FragmentMineItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,6 +54,7 @@
                 android:src="@mipmap/ic_mymusic_local_normal" />
 
             <TextView
+                android:id="@+id/fra_local_music_tv"
                 style="@style/FragmentMineTvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

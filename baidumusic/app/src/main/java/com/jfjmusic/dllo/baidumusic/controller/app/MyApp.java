@@ -11,6 +11,10 @@ import android.content.Context;
  */
 public class MyApp extends Application{
 
+    /**
+     * 除了网络和数据库别的地方尽量不要用
+     * 负荷太大
+     */
 
     private static Context context;
 

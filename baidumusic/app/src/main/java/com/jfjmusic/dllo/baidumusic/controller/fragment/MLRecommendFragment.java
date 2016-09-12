@@ -26,13 +26,14 @@ public class MLRecommendFragment extends AbsBaseFragment{
     @Override
     protected void initDatas() {
         //获取网络数据
+        getNetDatas();
     }
 
     protected void getNetDatas(){
         VolleyInatance.getVolleyInatance().startRequest(url, new VolleyResult() {
             @Override
             public void success(String resultStr) {
-                L.d(resultStr);
+                L.d("推荐"+resultStr);
             }
 
             @Override

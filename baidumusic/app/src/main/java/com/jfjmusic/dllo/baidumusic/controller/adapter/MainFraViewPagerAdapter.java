@@ -12,14 +12,14 @@ import java.util.List;
 /**
  * Created by dllo on 16/9/10.
  */
-public class MainAcViewPagerAdapter extends FragmentPagerAdapter {
+public class MainFraViewPagerAdapter extends FragmentPagerAdapter {
 
     private Context context;
     private List<AbsBaseFragment> fragments;
     private List<String> title;
 
     //带context的构造方法
-    public MainAcViewPagerAdapter(FragmentManager fm, Context context) {
+    public MainFraViewPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
         this.context = context;
     }
@@ -35,7 +35,7 @@ public class MainAcViewPagerAdapter extends FragmentPagerAdapter {
     }
 
     //不带Context的构造方法
-    public MainAcViewPagerAdapter(FragmentManager fm) {
+    public MainFraViewPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 

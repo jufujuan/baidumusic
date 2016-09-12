@@ -33,7 +33,10 @@ public class MusicLibraryFragment extends AbsBaseFragment{
         mViewPager=byView(R.id.music_library_viewpager);
         title=new ArrayList<>();
         fragments=new ArrayList<>();
-        adapter=new MusicLibraryFraViewPagerAdapter(getFragmentManager(),context);
+        /**
+         * fragment嵌套fragment要用getChildFragmentManager()而不是getFragmentManager()
+         */
+        adapter=new MusicLibraryFraViewPagerAdapter(getChildFragmentManager(),context);
     }
 
     @Override
@@ -52,8 +55,6 @@ public class MusicLibraryFragment extends AbsBaseFragment{
         adapter.setFragments(fragments);
         mViewPager.setAdapter(adapter);
         mTabLayout.setupWithViewPager(mViewPager);
-
-
 
     }
 }

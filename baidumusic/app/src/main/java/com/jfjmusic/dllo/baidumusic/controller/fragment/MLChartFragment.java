@@ -5,6 +5,9 @@ import android.widget.ListView;
 import com.jfjmusic.dllo.baidumusic.R;
 import com.jfjmusic.dllo.baidumusic.controller.adapter.MLChartListViewAdapter;
 import com.jfjmusic.dllo.baidumusic.model.bean.MLChartBean;
+import com.jfjmusic.dllo.baidumusic.model.net.VolleyInatance;
+import com.jfjmusic.dllo.baidumusic.model.net.VolleyResult;
+import com.jfjmusic.dllo.baidumusic.utils.L;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +21,7 @@ public class MLChartFragment extends AbsBaseFragment{
     private MLChartListViewAdapter mListViewAdapter;
     private List<MLChartBean> datas;
     private ListView listView;
+    private String url="http://tingapi.ting.baidu.com/v1/restserver/ting?method=baidu.ting.billboard.billCategory&format=json&from=ios&version=5.2.1&from=ios&channel=appstore";
 
     @Override
     protected int setLayout() {
@@ -42,5 +46,21 @@ public class MLChartFragment extends AbsBaseFragment{
         }
         mListViewAdapter.setDatas(datas);
         listView.setAdapter(mListViewAdapter);
+        //获取网络数据
+        getNetDatas();
+    }
+    //获取网络数据
+    protected void getNetDatas(){
+        VolleyInatance.getVolleyInatance().startRequest(url, new VolleyResult() {
+            @Override
+            public void success(String resultStr) {
+                L.d("排行"+resultStr);
+            }
+
+            @Override
+            public void failure() {
+                L.d("失败");
+            }
+        });
     }
 }
