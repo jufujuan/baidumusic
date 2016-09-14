@@ -12,4 +12,10 @@ public class Unique {
     public final static int MINE_LOCAL_MUSIC_TYPE=1;
     //minefragment发送广播的最近播放广播发送的类型
     public final static int MINE_CURRENT_PLAY_TYPE=2;
+    //minefragment发送广播的最近播放广播发送的类型
+    public final static int MUSICL_CHART_PLAY_TYPE=3;
+
+   // public enum borad
+
+
 }

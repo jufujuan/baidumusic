@@ -10,21 +10,24 @@ import android.widget.TextView;
 
 import com.jfjmusic.dllo.baidumusic.R;
 import com.jfjmusic.dllo.baidumusic.model.bean.MLChartBean;
+import com.jfjmusic.dllo.baidumusic.utils.L;
+import com.jfjmusic.dllo.baidumusic.utils.T;
 
 import java.util.List;
 
 /**
  * Created by dllo on 16/9/10.
+ * 乐库-->排行-----的listView的适配器
  */
 public class MLChartListViewAdapter extends BaseAdapter{
     private Context context;
-    private List<MLChartBean> datas;
+    private List<MLChartBean.ContentBean> datas;
 
     public MLChartListViewAdapter(Context context) {
         this.context = context;
     }
 
-    public void setDatas(List<MLChartBean> datas) {
+    public void setDatas(List<MLChartBean.ContentBean> datas) {
         this.datas = datas;
         notifyDataSetChanged();
     }
@@ -54,11 +57,12 @@ public class MLChartListViewAdapter extends BaseAdapter{
         }else{
             viewHolder= (ViewHolder) convertView.getTag();
         }
-        viewHolder.mImageView.setImageResource(datas.get(position).getImg());
-        viewHolder.titleTv.setText(datas.get(position).getTitle());
-        viewHolder.oneTv.setText(datas.get(position).getSongName().get(0));
-        viewHolder.twoTv.setText(datas.get(position).getSongName().get(1));
-        viewHolder.threeTv.setText(datas.get(position).getSongName().get(2));
+   //     viewHolder.mImageView.setImageResource(datas.get(position).getPic_s192());
+        L.d("bug",datas.get(position).getName());
+        viewHolder.titleTv.setText(datas.get(position).getName());
+        viewHolder.oneTv.setText(datas.get(position).getMyContent().get(0).getTitle());
+        viewHolder.twoTv.setText(datas.get(position).getMyContent().get(1).getTitle());
+        viewHolder.threeTv.setText(datas.get(position).getMyContent().get(2).getTitle());
         return convertView;
     }
 

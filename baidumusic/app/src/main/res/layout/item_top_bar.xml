@@ -8,11 +8,13 @@
     android:orientation="horizontal">
     <!--返回键-->
     <ImageView
+        android:layout_margin="10dp"
         android:id="@+id/item_top_bar_back_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher"/>
+        android:src="@mipmap/bt_return_nor"/>
     <TextView
+        android:textColor="#fff"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
@@ -21,15 +23,15 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher"/>
+        android:src="@mipmap/ic_localmusic_search"/>
     <!--扫描歌曲-->
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher"/>
+        android:src="@mipmap/ic_localmusic_scan"/>
     <!--排序方法-->
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher"/>
+        android:src="@mipmap/ic_localmusic_sort"/>
 </LinearLayout>

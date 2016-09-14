@@ -11,8 +11,10 @@ import android.support.v4.app.FragmentTransaction;
 import com.jfjmusic.dllo.baidumusic.R;
 import com.jfjmusic.dllo.baidumusic.controller.fragment.MICurrentPlayFragment;
 import com.jfjmusic.dllo.baidumusic.controller.fragment.MILocalMusicFragment;
+import com.jfjmusic.dllo.baidumusic.controller.fragment.MLChartFragment;
 import com.jfjmusic.dllo.baidumusic.controller.fragment.MainFragment;
 import com.jfjmusic.dllo.baidumusic.utils.L;
+import com.jfjmusic.dllo.baidumusic.utils.T;
 import com.jfjmusic.dllo.baidumusic.utils.Unique;
 
 public class MainActivity extends AbsBaseActivity {
@@ -47,7 +49,7 @@ public class MainActivity extends AbsBaseActivity {
          */
         mTransaction.replace(R.id.main_framelayout, mainFragment);
         /******/
-        mTransaction.addToBackStack(null);
+        //mTransaction.addToBackStack(null);
         /******/
         mTransaction.commit();
 
@@ -73,13 +75,21 @@ public class MainActivity extends AbsBaseActivity {
                         L.d("并没有任何广播设置");
                         break;
                     case Unique.MINE_LOCAL_MUSIC_TYPE:
+                        mineTransaction.addToBackStack(null);
                         //如果是"本地音乐"传来的广播
                         mineTransaction.replace(R.id.main_framelayout, MILocalMusicFragment.newInstance());
                         break;
                     case Unique.MINE_CURRENT_PLAY_TYPE:
+                        mineTransaction.addToBackStack(null);
                         //如果是"最近播放"传来的广播
                         mineTransaction.replace(R.id.main_framelayout, MICurrentPlayFragment.newInstance());
                         break;
+
+//                    case Unique.MUSICL_CHART_PLAY_TYPE:
+//                        T.show("排行榜传来的广播",2000);
+//                        mineTransaction.addToBackStack(null);
+//                        mineTransaction.replace(R.id.main_framelayout, MICurrentPlayFragment.newInstance());
+//                        break;
 
                 }
                 mineTransaction.commit();
