@@ -17,17 +17,20 @@
     </style>
     <!--minefragment行布局内部左边图片-->
     <style name="FragmentMineImgLeft">
-        <item name="android:layout_margin">5dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
     </style>
 
     <!--minefragment行布局内部右边图片-->
     <style name="FragmentMineImgReight">
-        <item name="android:layout_margin">5dp</item>
+        <item name="android:layout_margin">15dp</item>
     </style>
 
     <!--minefragment行布局内部标题文字-->
     <style name="FragmentMineTvTitle">
-        <item name="android:layout_margin">2dp</item>
+        <item name="android:layout_margin">10dp</item>
         <item name="android:textColor">#131313</item>
         <item name="android:textSize">13sp</item>
     </style>

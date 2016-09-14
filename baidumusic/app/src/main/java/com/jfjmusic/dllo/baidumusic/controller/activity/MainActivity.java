@@ -9,8 +9,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 import com.jfjmusic.dllo.baidumusic.R;
-import com.jfjmusic.dllo.baidumusic.controller.fragment.MICurrentPlayFragment;
-import com.jfjmusic.dllo.baidumusic.controller.fragment.MiLocalMusicFragment;
+import com.jfjmusic.dllo.baidumusic.controller.fragment.mine.MICurrentPlayFragment;
+import com.jfjmusic.dllo.baidumusic.controller.fragment.mine.MiLocalMusicFragment;
 import com.jfjmusic.dllo.baidumusic.controller.fragment.MainFragment;
 import com.jfjmusic.dllo.baidumusic.utils.L;
 import com.jfjmusic.dllo.baidumusic.utils.Unique;

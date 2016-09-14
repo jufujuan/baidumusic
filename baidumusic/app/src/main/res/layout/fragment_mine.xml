@@ -105,6 +105,7 @@
                 android:text="几首歌" />
 
             <ImageView
+                android:layout_margin="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/ic_songlist_detail_nor" />
@@ -139,6 +140,7 @@
                 android:text="几首歌" />
 
             <ImageView
+                android:layout_margin="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/ic_songlist_detail_nor" />
@@ -173,6 +175,7 @@
                 android:text="几首歌" />
 
             <ImageView
+                android:layout_margin="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/ic_songlist_detail_nor" />
@@ -215,6 +218,7 @@
                 android:layout_weight="1" />
 
             <ImageView
+                android:layout_margin="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/ic_songlist_detail_nor" />

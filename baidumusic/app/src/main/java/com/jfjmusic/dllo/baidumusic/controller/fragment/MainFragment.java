@@ -6,7 +6,11 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 
 import com.jfjmusic.dllo.baidumusic.R;
-import com.jfjmusic.dllo.baidumusic.controller.adapter.MainFraViewPagerAdapter;
+import com.jfjmusic.dllo.baidumusic.controller.adapter.viewpager.MainFraViewPagerAdapter;
+import com.jfjmusic.dllo.baidumusic.controller.fragment.ktv.KtvFragment;
+import com.jfjmusic.dllo.baidumusic.controller.fragment.liveradio.LiveRadioFragment;
+import com.jfjmusic.dllo.baidumusic.controller.fragment.mine.MineFragment;
+import com.jfjmusic.dllo.baidumusic.controller.fragment.musiclibrary.MusicLibraryFragment;
 
 import java.util.ArrayList;
 import java.util.List;

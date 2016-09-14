@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?><!--歌单界面的RecyclerView的行布局-->
+<?xml version="1.0" encoding="utf-8"?>
+<!--歌单界面的RecyclerView的行布局-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <FrameLayout
@@ -9,27 +11,64 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:layout_margin="10dp"
+            android:id="@+id/fra_ml_song_list_img"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
             android:src="@mipmap/new_song" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:orientation="horizontal"
+            android:gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_gravity="bottom|left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:padding="10dp"
+                android:id="@+id/fra_ml_song_list_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:text="听歌人数"/>
+        </LinearLayout>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:gravity="bottom|right"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:scaleType="fitXY"
+                android:padding="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/fra_chart_small_icon"/>
+        </LinearLayout>
+
     </FrameLayout>
 
     <TextView
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/fra_ml_song_list_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="10sp"
+        android:textColor="#0e0e0e"
         android:text="名称(遇见你,在最美的时光)" />
 
     <TextView
+        android:layout_marginLeft="10dp"
+        android:textSize="10sp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/fra_ml_song_list_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#3d3c3c"
         android:text="详细说明(华语,流行)" />
 </LinearLayout>

@@ -1,53 +1,57 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--主界面的占位布局内容-->
+<?xml version="1.0" encoding="utf-8"?><!--主界面的占位布局内容-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <LinearLayout
+        android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <LinearLayout
-            android:background="#39aaf1"
+            android:gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:background="#39aaf1"
             android:orientation="horizontal">
 
             <android.support.design.widget.TabLayout
                 android:id="@+id/main_tablayout"
-                app:tabIndicatorHeight="0dp"
-                app:tabTextColor="#ccddf5"
-                app:tabSelectedTextColor="#fff"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="10" />
+                android:layout_weight="10"
+                app:tabIndicatorHeight="0dp"
+                app:tabSelectedTextColor="#fff"
+                app:tabTextColor="#ccddf5" />
 
             <Button
-                android:layout_margin="7dp"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_margin="7dp"
+                android:layout_weight="1"
                 android:background="@drawable/ac_main_bt_titlebar_new_search" />
 
             <Button
-                android:layout_marginLeft="7dp"
-                android:layout_marginBottom="7dp"
-                android:layout_marginTop="7dp"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="7dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
                 android:background="@mipmap/img_titlebar_login" />
 
-            <Button
-                android:layout_margin="7dp"
-                android:layout_width="0dp"
-                android:layout_weight="0.2"
-                android:layout_height="wrap_content"
-                android:background="@mipmap/bt_titlebar_setting_normal" />
+            <!--<ImageView-->
+                <!--android:layout_margin="7dp"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="0.2"-->
+                <!--android:scaleType="fitXY"-->
+                <!--android:src="@mipmap/bt_titlebar_setting_normal" />-->
 
         </LinearLayout>
 
@@ -55,7 +59,7 @@
             android:id="@+id/main_viewpager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="11"/>
+            android:layout_weight="11" />
 
 
     </LinearLayout>
