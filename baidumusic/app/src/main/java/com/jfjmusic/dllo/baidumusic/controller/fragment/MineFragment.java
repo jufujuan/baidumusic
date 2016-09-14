@@ -12,12 +12,13 @@ import com.jfjmusic.dllo.baidumusic.utils.Unique;
 
 /**
  * Created by dllo on 16/9/10.
+ * 我的界面
  */
 public class MineFragment extends AbsBaseFragment implements View.OnClickListener {
 
     private LinearLayout localmusicLinearLayout;
     private LinearLayout currentplayLinearLayout;
-    private MILocalMusicFragment localMusicFragment;
+    private MiLocalMusicFragment localMusicFragment;
     private FragmentManager manager;
     private FragmentTransaction transaction;
 
@@ -42,13 +43,10 @@ public class MineFragment extends AbsBaseFragment implements View.OnClickListene
 
     @Override
     protected void initDatas() {
-        localMusicFragment=new MILocalMusicFragment();
+        localMusicFragment=new MiLocalMusicFragment();
         manager=getFragmentManager();
         transaction=manager.beginTransaction();
 
-        /*********/
-        //transaction.addToBackStack(null);
-        /*********/
         //各种点击事件进入二级界面
         enterNextFragmentListener();
     }

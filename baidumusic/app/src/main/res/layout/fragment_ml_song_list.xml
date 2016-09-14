@@ -26,7 +26,7 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/ml_song_list_recyclerview"
+        android:id="@+id/fra_ml_song_list_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 </LinearLayout>

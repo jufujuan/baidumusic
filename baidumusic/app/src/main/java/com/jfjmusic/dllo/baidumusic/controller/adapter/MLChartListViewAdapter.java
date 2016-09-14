@@ -11,7 +11,9 @@ import android.widget.TextView;
 import com.jfjmusic.dllo.baidumusic.R;
 import com.jfjmusic.dllo.baidumusic.model.bean.MLChartBean;
 import com.jfjmusic.dllo.baidumusic.utils.L;
+import com.jfjmusic.dllo.baidumusic.utils.ScreenSizeUtil;
 import com.jfjmusic.dllo.baidumusic.utils.T;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -57,12 +59,15 @@ public class MLChartListViewAdapter extends BaseAdapter{
         }else{
             viewHolder= (ViewHolder) convertView.getTag();
         }
-   //     viewHolder.mImageView.setImageResource(datas.get(position).getPic_s192());
-        L.d("bug",datas.get(position).getName());
+        //int height= ScreenSizeUtil.getScreenSize(ScreenSizeUtil.ScreenState.HEIGHT);
+        //viewHolder.mImageView.
+
+        Picasso.with(context).load(datas.get(position).getPic_s210()).into(viewHolder.mImageView);
+
         viewHolder.titleTv.setText(datas.get(position).getName());
-        viewHolder.oneTv.setText(datas.get(position).getMyContent().get(0).getTitle());
-        viewHolder.twoTv.setText(datas.get(position).getMyContent().get(1).getTitle());
-        viewHolder.threeTv.setText(datas.get(position).getMyContent().get(2).getTitle());
+        viewHolder.oneTv.setText(datas.get(position).getContent().get(0).getTitle());
+        viewHolder.twoTv.setText(datas.get(position).getContent().get(1).getTitle());
+        viewHolder.threeTv.setText(datas.get(position).getContent().get(2).getTitle());
         return convertView;
     }
 

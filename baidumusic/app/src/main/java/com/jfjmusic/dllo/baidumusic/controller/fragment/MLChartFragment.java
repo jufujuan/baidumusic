@@ -1,22 +1,17 @@
 package com.jfjmusic.dllo.baidumusic.controller.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.jfjmusic.dllo.baidumusic.R;
 import com.jfjmusic.dllo.baidumusic.controller.adapter.MLChartListViewAdapter;
 import com.jfjmusic.dllo.baidumusic.model.bean.MLChartBean;
-import com.jfjmusic.dllo.baidumusic.model.net.VolleyInatance;
+import com.jfjmusic.dllo.baidumusic.model.net.VolleyInstance;
 import com.jfjmusic.dllo.baidumusic.model.net.VolleyResult;
 import com.jfjmusic.dllo.baidumusic.utils.L;
-import com.jfjmusic.dllo.baidumusic.utils.T;
 import com.jfjmusic.dllo.baidumusic.utils.Unique;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,7 +26,7 @@ public class MLChartFragment extends AbsBaseFragment{
     //private List<MLChartBean> datas;
     private List<MLChartBean.ContentBean> contentBeens;
     private ListView listView;
-    private String url="http://tingapi.ting.baidu.com/v1/restserver/ting?method=baidu.ting.billboard.billCategory&format=json&from=ios&version=5.2.1&from=ios&channel=appstore";
+
     private Gson gson;
 
     public static MLChartFragment newInstance() {
@@ -88,13 +83,21 @@ public class MLChartFragment extends AbsBaseFragment{
     }
     //获取网络数据
     protected void getNetDatas(){
-        VolleyInatance.getVolleyInatance().startRequest(url, new VolleyResult() {
+        VolleyInstance.getVolleyInstance().startRequest(Unique.ML_CHART_URL, new VolleyResult() {
             @Override
             public void success(String resultStr) {
                 L.d("排行"+resultStr);
                 gson=new Gson();
                 MLChartBean datas= gson.fromJson(resultStr,MLChartBean.class);
+                if (datas==null){
+                    L.d("数集为空");
+                }else{
+                    L.d("数集不为空");
+                }
                 contentBeens=datas.getContent();
+                L.d("集合的大小为:"+contentBeens.size());
+                L.d("榜单名:"+contentBeens.get(0).getName());
+                L.d("集合下的子集的大小:"+contentBeens.get(1).getContent().size());
             }
 
             @Override

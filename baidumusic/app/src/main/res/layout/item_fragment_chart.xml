@@ -6,20 +6,21 @@
     android:orientation="horizontal">
 
     <!--榜单图片-->
-    <LinearLayout
+    <FrameLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_margin="7dp"
-        android:layout_weight="0.7"
-        android:background="@mipmap/new_song"
-        android:gravity="bottom|right">
-
+        android:layout_weight="0.7">
         <ImageView
+            android:scaleType="fitXY"
             android:id="@+id/ml_chart_img_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/fra_chart_small_icon" />
-    </LinearLayout>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:foreground="@drawable/fra_chart_small_icon"
+            android:foregroundGravity="bottom|right"
+            android:src="@mipmap/new_song"
+            />
+    </FrameLayout>
     <!--榜单前三名-->
     <LinearLayout
         android:layout_width="0dp"

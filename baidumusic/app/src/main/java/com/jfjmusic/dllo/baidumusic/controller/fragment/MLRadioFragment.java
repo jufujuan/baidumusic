@@ -3,7 +3,7 @@ package com.jfjmusic.dllo.baidumusic.controller.fragment;
 import android.os.Bundle;
 
 import com.jfjmusic.dllo.baidumusic.R;
-import com.jfjmusic.dllo.baidumusic.model.net.VolleyInatance;
+import com.jfjmusic.dllo.baidumusic.model.net.VolleyInstance;
 import com.jfjmusic.dllo.baidumusic.model.net.VolleyResult;
 import com.jfjmusic.dllo.baidumusic.utils.L;
 
@@ -39,7 +39,7 @@ public class MLRadioFragment extends AbsBaseFragment{
     }
     //获取网络数据
     protected void getNetDatas(){
-        VolleyInatance.getVolleyInatance().startRequest(url, new VolleyResult() {
+        VolleyInstance.getVolleyInstance().startRequest(url, new VolleyResult() {
             @Override
             public void success(String resultStr) {
                 L.d("电台"+resultStr);

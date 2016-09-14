@@ -1,6 +1,5 @@
 package com.jfjmusic.dllo.baidumusic.controller.fragment;
 
-import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -19,7 +18,7 @@ import java.util.List;
  * Created by dllo on 16/9/12.
  * 我的界面中的'本地音乐'
  */
-public class MILocalMusicFragment extends AbsBaseFragment{
+public class MiLocalMusicFragment extends AbsBaseFragment{
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -28,11 +27,11 @@ public class MILocalMusicFragment extends AbsBaseFragment{
     private List<String> title;
     private ImageView backImg;
 
-    public static MILocalMusicFragment newInstance() {
+    public static MiLocalMusicFragment newInstance() {
 
         Bundle args = new Bundle();
 
-        MILocalMusicFragment fragment = new MILocalMusicFragment();
+        MiLocalMusicFragment fragment = new MiLocalMusicFragment();
         fragment.setArguments(args);
         return fragment;
     }

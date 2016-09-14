@@ -10,11 +10,9 @@ import android.support.v4.app.FragmentTransaction;
 
 import com.jfjmusic.dllo.baidumusic.R;
 import com.jfjmusic.dllo.baidumusic.controller.fragment.MICurrentPlayFragment;
-import com.jfjmusic.dllo.baidumusic.controller.fragment.MILocalMusicFragment;
-import com.jfjmusic.dllo.baidumusic.controller.fragment.MLChartFragment;
+import com.jfjmusic.dllo.baidumusic.controller.fragment.MiLocalMusicFragment;
 import com.jfjmusic.dllo.baidumusic.controller.fragment.MainFragment;
 import com.jfjmusic.dllo.baidumusic.utils.L;
-import com.jfjmusic.dllo.baidumusic.utils.T;
 import com.jfjmusic.dllo.baidumusic.utils.Unique;
 
 public class MainActivity extends AbsBaseActivity {
@@ -77,7 +75,7 @@ public class MainActivity extends AbsBaseActivity {
                     case Unique.MINE_LOCAL_MUSIC_TYPE:
                         mineTransaction.addToBackStack(null);
                         //如果是"本地音乐"传来的广播
-                        mineTransaction.replace(R.id.main_framelayout, MILocalMusicFragment.newInstance());
+                        mineTransaction.replace(R.id.main_framelayout, MiLocalMusicFragment.newInstance());
                         break;
                     case Unique.MINE_CURRENT_PLAY_TYPE:
                         mineTransaction.addToBackStack(null);

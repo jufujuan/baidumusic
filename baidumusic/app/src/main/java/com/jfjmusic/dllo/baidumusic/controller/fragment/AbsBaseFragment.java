@@ -5,20 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.TranslateAnimation;
 
-import com.jfjmusic.dllo.baidumusic.R;
 import com.jfjmusic.dllo.baidumusic.controller.activity.AbsBaseActivity;
-import com.jfjmusic.dllo.baidumusic.model.net.VolleyInatance;
-import com.jfjmusic.dllo.baidumusic.model.net.VolleyResult;
-import com.jfjmusic.dllo.baidumusic.utils.L;
 
 /**
  * Created by dllo on 16/9/8.
