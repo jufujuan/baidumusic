@@ -3,6 +3,7 @@ package com.jfjmusic.dllo.baidumusic.controller.adapter.recyclerview;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,11 +15,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jfjmusic.dllo.baidumusic.R;
+import com.jfjmusic.dllo.baidumusic.model.bean.MLRadioBean;
 import com.jfjmusic.dllo.baidumusic.model.bean.MLSongLIstBean;
 import com.jfjmusic.dllo.baidumusic.utils.L;
 import com.jfjmusic.dllo.baidumusic.utils.ScreenSizeUtil;
-import com.squareup.picasso.Cache;
-import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -27,56 +27,60 @@ import java.util.List;
 
 /**
  * Created by dllo on 16/9/14.
- * 乐库-->歌单----的recyclerview的Adapter
+ * 乐库-->电台----的recyclerview的Adapter
  */
-public class MLSongListRecyclerAdapter extends RecyclerView.Adapter<MLSongListRecyclerAdapter.ViewHolder> {
+public class MLRadioRecyclerAdapter extends RecyclerView.Adapter<MLRadioRecyclerAdapter.ViewHolder> {
 
     private Context context;
     private ViewHolder viewHolder;
-    private List<MLSongLIstBean.ContentBean> datas;
+    private List<MLRadioBean.ResultBean> datas;
 
-    private int height = ScreenSizeUtil.getScreenSize(ScreenSizeUtil.ScreenState.WIDTH) / 2 - 40;
-    private int width = ScreenSizeUtil.getScreenSize(ScreenSizeUtil.ScreenState.WIDTH) / 2 - 40;
+    private int height = ScreenSizeUtil.getScreenSize(ScreenSizeUtil.ScreenState.WIDTH) / 4 - 40;
+    private int width = ScreenSizeUtil.getScreenSize(ScreenSizeUtil.ScreenState.WIDTH) / 6;
 
-    public MLSongListRecyclerAdapter(Context context) {
+    public MLRadioRecyclerAdapter(Context context) {
         this.context = context;
     }
 
-    public void setDatas(List<MLSongLIstBean.ContentBean> datas) {
+    public void setDatas(List<MLRadioBean.ResultBean> datas) {
         this.datas = datas;
         notifyDataSetChanged();
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_fragment_song_list, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_fragment_ml_radio, parent, false);
         viewHolder = new ViewHolder(view);
         return viewHolder;
     }
 
-    @Override
-    public void onViewRecycled(ViewHolder holder) {
-        super.onViewRecycled(holder);
-        //int pp=holder.getAdapterPosition();
-
-        //L.d("复用中的:"+pp);
-//        AsyncTask asyncTask = (AsyncTask) holder.img.getTag(1);
-//        asyncTask.cancel(true);
-
-
-    }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
+
+        switch (position){
+            case 0:
+                L.d("aaa","橙色");
+                holder.img.setImageTintList(context.getResources().getColorStateList(R.color.colorMLRadioOne));
+                break;
+            case 1:
+                holder.img.setImageTintList(context.getResources().getColorStateList(R.color.colorMLRadioTwo));
+                break;
+            case 2:
+                holder.img.setImageTintList(context.getResources().getColorStateList(R.color.colorMLRadioThree));
+                break;
+            case 3:
+                holder.img.setImageTintList(context.getResources().getColorStateList(R.color.colorMLRadioFour));
+                break;
+        }
 
         L.d("绑布局" + position);
         //holder.setIsRecyclable(false);//设置不使用复用机制(该方法会使性能下降)
 
        // Picasso.with(context).load(datas.get(position).getPic_300()).resize(height, width).into(viewHolder.img);
-        holder.titleTv.setText(datas.get(position).getTitle());
-        holder.typetv.setText(datas.get(position).getTag());
+        holder.tv.setText(datas.get(position).getScene_name());
 
-        final String imgurl = datas.get(position).getPic_300();
+        final String imgurl = datas.get(position).getIcon_android();
         /**
          * 在这里解决了RecyclerView缓存机制导致图片显示错乱的问题
          */
@@ -90,7 +94,7 @@ public class MLSongListRecyclerAdapter extends RecyclerView.Adapter<MLSongListRe
             @Override
             protected Object doInBackground(Object[] params) {
                 try {
-                    URL url = new URL(datas.get(position).getPic_300());
+                    URL url = new URL(datas.get(position).getIcon_android());
                     Bitmap bitmap = BitmapFactory.decodeStream(url.openStream());
                     return bitmap;
                 } catch (MalformedURLException e) {
@@ -113,28 +117,24 @@ public class MLSongListRecyclerAdapter extends RecyclerView.Adapter<MLSongListRe
         };
         asyncTask.execute();
         /******************************************/
-        FrameLayout.LayoutParams params=new FrameLayout.LayoutParams(height,width);
+        LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(height,width);
         holder.img.setLayoutParams(params);
     }
 
     @Override
     public int getItemCount() {
-        return datas != null && datas.size() != 0 ? datas.size() : 0;
+        return datas != null && datas.size() >= 12 ? 12 : 0;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView img;
-        private TextView numberTv;
-        private TextView titleTv;
-        private TextView typetv;
+        private TextView tv;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            img = (ImageView) itemView.findViewById(R.id.fra_ml_song_list_img);
-            numberTv = (TextView) itemView.findViewById(R.id.fra_ml_song_list_number);
-            titleTv = (TextView) itemView.findViewById(R.id.fra_ml_song_list_title);
-            typetv = (TextView) itemView.findViewById(R.id.fra_ml_song_list_type);
+            img = (ImageView) itemView.findViewById(R.id.item_fra_ml_radio_img);
+            tv = (TextView) itemView.findViewById(R.id.item_fra_ml_radio_text);
         }
     }
 }

@@ -1,90 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <!--两个频道-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <!--红心频道-->
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--两个频道-->
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            android:layout_weight="1"
-            android:background="@mipmap/img_recommend_lebo_orange"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="horizontal">
+            <!--红心频道-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:layout_weight="1"
+                android:background="@mipmap/img_recommend_lebo_orange"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="7dp"
+                    android:layout_marginTop="13dp"
+                    android:src="@mipmap/ic_radiopage_icon_like" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="13dp"
+                    android:text="红心频道"
+                    android:textSize="10sp" />
+            </LinearLayout>
+            <!--私人频道-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:layout_weight="1"
+                android:background="@mipmap/img_recommend_lebo_blue"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="7dp"
+                    android:layout_marginTop="13dp"
+                    android:src="@mipmap/ic_radiopage_icon_personal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="13dp"
+                    android:text="私人频道"
+                    android:textSize="10sp" />
+            </LinearLayout>
+        </LinearLayout>
+        <!--推荐电台-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="7dp"
-                android:layout_marginTop="13dp"
-                android:src="@mipmap/ic_radiopage_icon_like" />
+                android:layout_width="5dp"
+                android:layout_height="match_parent"
+                android:background="#39a4f5" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="13dp"
-                android:text="红心频道"
-                android:textSize="10sp" />
+                android:text="推荐电台" />
         </LinearLayout>
-        <!--私人频道-->
-        <LinearLayout
-            android:layout_width="0dp"
+        <!--推荐电台的内容-->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fra_ml_radio_recyclerview"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            android:layout_weight="1"
-            android:background="@mipmap/img_recommend_lebo_blue"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_margin="15dp">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="7dp"
-                android:layout_marginTop="13dp"
-                android:src="@mipmap/ic_radiopage_icon_personal" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="13dp"
-                android:text="私人频道"
-                android:textSize="10sp" />
-        </LinearLayout>
-    </LinearLayout>
-    <!--推荐电台-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="5dp"
-            android:layout_height="match_parent"
-            android:background="#39a4f5" />
-
+        </android.support.v7.widget.RecyclerView>
+        <!--更多电台-->
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="推荐电台" />
+            android:layout_margin="10dp"
+            android:background="@drawable/fra_ktv_search_boder"
+            android:gravity="center"
+            android:padding="7dp"
+            android:text="更多电台分类" />
     </LinearLayout>
-    <!--推荐电台的内容-->
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </android.support.v7.widget.RecyclerView>
-    <!--更多电台-->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="更多电台" />
-</LinearLayout>
+</ScrollView>

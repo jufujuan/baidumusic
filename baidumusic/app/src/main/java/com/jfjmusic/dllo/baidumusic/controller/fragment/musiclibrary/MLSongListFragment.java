@@ -56,7 +56,7 @@ public class MLSongListFragment extends AbsBaseFragment {
         mRecyclerView.setLayoutManager(new GridLayoutManager(context,2));
     }
     protected void getNetDatas(){
-        VolleyInstance.getVolleyInstance().startRequest(Unique.ML_SONG_LIST_url, new VolleyResult() {
+        VolleyInstance.getVolleyInstance().startRequest(Unique.ML_SONG_LIST_URL, new VolleyResult() {
             @Override
             public void success(String resultStr) {
                 L.d("歌单"+resultStr);
