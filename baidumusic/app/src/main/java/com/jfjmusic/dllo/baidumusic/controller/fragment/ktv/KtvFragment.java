@@ -2,10 +2,16 @@ package com.jfjmusic.dllo.baidumusic.controller.fragment.ktv;
 
 import android.os.Bundle;
 
+import com.google.gson.Gson;
 import com.jfjmusic.dllo.baidumusic.R;
 import com.jfjmusic.dllo.baidumusic.controller.adapter.listview.KtvListViewAdapter;
 import com.jfjmusic.dllo.baidumusic.controller.fragment.AbsBaseFragment;
 import com.jfjmusic.dllo.baidumusic.model.bean.KtvAllSingBean;
+import com.jfjmusic.dllo.baidumusic.model.bean.MLRadioBean;
+import com.jfjmusic.dllo.baidumusic.model.net.VolleyInstance;
+import com.jfjmusic.dllo.baidumusic.model.net.VolleyResult;
+import com.jfjmusic.dllo.baidumusic.utils.L;
+import com.jfjmusic.dllo.baidumusic.utils.Unique;
 import com.jfjmusic.dllo.baidumusic.view.MyListView;
 
 import java.util.ArrayList;
@@ -18,7 +24,7 @@ import java.util.List;
 public class KtvFragment extends AbsBaseFragment {
 
     private MyListView listView;
-    private List<KtvAllSingBean> datas;
+    private List<KtvAllSingBean.ResultBean.ItemsBean> datas;
     private KtvListViewAdapter mAdapter;
     // 最新的写法
     // 向fragment传值 setArguments
@@ -42,16 +48,30 @@ public class KtvFragment extends AbsBaseFragment {
     @Override
     protected void initViews() {
         listView=byView(R.id.fra_ktv_listview);
-        datas=new ArrayList<>();
         mAdapter=new KtvListViewAdapter(context);
     }
 
     @Override
     protected void initDatas() {
-        for (int i = 0; i < 10; i++) {
-            datas.add(new KtvAllSingBean("逆战-张杰",15469));
-        }
+        getNetDatas();
         mAdapter.setDatas(datas);
         listView.setAdapter(mAdapter);
+    }
+    //获取网络数据
+    protected void getNetDatas() {
+        VolleyInstance.getVolleyInstance().startRequest(Unique.KTV_URL, new VolleyResult() {
+            @Override
+            public void success(String resultStr) {
+                L.d("电台" + resultStr);
+                Gson gson = new Gson();
+                KtvAllSingBean bean = gson.fromJson(resultStr, KtvAllSingBean.class);
+                datas = bean.getResult().getItems();
+            }
+
+            @Override
+            public void failure() {
+                L.d("失败");
+            }
+        });
     }
 }

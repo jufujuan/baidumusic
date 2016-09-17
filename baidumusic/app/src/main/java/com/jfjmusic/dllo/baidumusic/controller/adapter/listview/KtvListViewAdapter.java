@@ -17,13 +17,13 @@ import java.util.List;
  */
 public class KtvListViewAdapter extends BaseAdapter{
     private Context context;
-    private List<KtvAllSingBean> datas;
+    private List<KtvAllSingBean.ResultBean.ItemsBean> datas;
 
     public KtvListViewAdapter(Context context) {
         this.context = context;
     }
 
-    public void setDatas(List<KtvAllSingBean> datas) {
+    public void setDatas(List<KtvAllSingBean.ResultBean.ItemsBean> datas) {
         this.datas = datas;
         notifyDataSetChanged();
     }
@@ -53,8 +53,8 @@ public class KtvListViewAdapter extends BaseAdapter{
         }else{
             viewHolder= (ViewHolder) convertView.getTag();
         }
-        viewHolder.nameTv.setText(datas.get(position).getName());
-        viewHolder.numberTv.setText(datas.get(position).getNumber()+"人唱过");
+        viewHolder.nameTv.setText(datas.get(position).getSong_title()+"-"+datas.get(position).getArtist_name());
+        viewHolder.numberTv.setText(datas.get(position).getPlay_num()+"人唱过");
         return convertView;
     }
 

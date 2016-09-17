@@ -7,12 +7,13 @@ import com.jfjmusic.dllo.baidumusic.controller.fragment.AbsBaseFragment;
 import com.jfjmusic.dllo.baidumusic.model.net.VolleyInstance;
 import com.jfjmusic.dllo.baidumusic.model.net.VolleyResult;
 import com.jfjmusic.dllo.baidumusic.utils.L;
+import com.jfjmusic.dllo.baidumusic.utils.Unique;
 
 /**
  * Created by dllo on 16/9/10.
+ * 直播界面
  */
 public class LiveRadioFragment extends AbsBaseFragment {
-    private String url="http://tingapi.ting.baidu.com/v1/restserver/ting?from=android&version=5.8.2.0&channel=vivo&operator=0&method=baidu.ting.show.live&page_no=1&page_size=40";
 
     public static LiveRadioFragment newInstance() {
 
@@ -39,7 +40,7 @@ public class LiveRadioFragment extends AbsBaseFragment {
         getNetDatas();
     }
     protected void getNetDatas(){
-        VolleyInstance.getVolleyInstance().startRequest(url, new VolleyResult() {
+        VolleyInstance.getVolleyInstance().startRequest(Unique.LIVERADIO_CLASS, new VolleyResult() {
             @Override
             public void success(String resultStr) {
                 L.d("直播"+resultStr);

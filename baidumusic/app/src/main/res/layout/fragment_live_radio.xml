@@ -1,12 +1,51 @@
-<?xml version="1.0" encoding="utf-8"?><!--  一级fragment直播   -->
+<?xml version="1.0" encoding="utf-8"?>
+<!--  一级fragment直播   -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:layout_margin="10dp"
+        android:id="@+id/fra_live_radio_class_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="直播" />
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#a4a2a2"/>
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp">
+        <ImageView
+            android:layout_marginRight="5dp"
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="#23afef"/>
+        <TextView
+            android:textColor="#1d1c1c"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="热门直播"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="更多"/>
+        <ImageView
+            android:id="@+id/fra_live_radio_class_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_action_more"/>
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:layout_margin="10dp"
+        android:id="@+id/fra_live_radio_hot_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

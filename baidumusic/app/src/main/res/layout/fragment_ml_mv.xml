@@ -2,19 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="7dp"
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
         android:layout_gravity="center_vertical"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <ImageView
             android:layout_width="5dp"
             android:layout_height="match_parent"
+            android:layout_margin="5dp"
             android:background="#2b8ce1" />
 
         <TextView
@@ -31,25 +34,38 @@
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-        <Button
-            android:background="@null"
+
+        <RadioGroup
+            android:id="@+id/fra_ml_mv_radiogroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="最新" />
+            android:gravity="right|center_vertical"
+            android:orientation="horizontal">
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="wrap_content"
-            android:background="#7c7c7c" />
+            <RadioButton
+                android:id="@+id/fra_ml_mv_radiobutton_new"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:text="最新" />
 
-        <Button
-            android:background="@null"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="最热" />
+            <View
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="#7c7c7c" />
+
+            <RadioButton
+                android:id="@+id/fra_ml_mv_radiobutton_hot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:text="最热" />
+        </RadioGroup>
     </LinearLayout>
+
     <FrameLayout
-        android:id="@+id/ml_mv_recyclerview"
+        android:id="@+id/fra_ml_mv_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="11">
