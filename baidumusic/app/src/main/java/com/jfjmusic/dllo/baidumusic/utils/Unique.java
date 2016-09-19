@@ -57,7 +57,10 @@ public final class Unique {
      * 直播界面下(人们直播)的网址
      */
     public final static String LIVERADIO_HOT="http://tingapi.ting.baidu.com/v1/restserver/ting?from=android&version=5.8.2.0&channel=875b&operator=0&method=baidu.ting.show.live&page_no=1&page_size=40";
-
+    /**
+     * 推荐界面的网址
+     */
+    public final static String ML_RECOMMEND="http://tingapi.ting.baidu.com/v1/restserver/ting?from=android&version=5.8.2.0&channel=vivo&operator=0&method=baidu.ting.plaza.index&cuid=D39E874BD13170332B889C3E2F9F6C0B";
 
 
 

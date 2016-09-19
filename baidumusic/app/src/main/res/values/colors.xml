@@ -7,4 +7,7 @@
     <color name="colorMLRadioTwo">#36ea12</color>
     <color name="colorMLRadioThree">#1fe9bd</color>
     <color name="colorMLRadioFour">#12a6ea</color>
+    <!--播放界面的viewpager下面的颜色-->
+    <color name="playViewPagerSelected">#fff</color>
+    <color name="playViewPagerNormal">#b7b7b7</color>
 </resources>

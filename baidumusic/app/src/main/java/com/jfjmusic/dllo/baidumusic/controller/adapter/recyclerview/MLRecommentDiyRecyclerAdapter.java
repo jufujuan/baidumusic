@@ -4,22 +4,18 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jfjmusic.dllo.baidumusic.R;
-import com.jfjmusic.dllo.baidumusic.model.bean.MLSongLIstBean;
+import com.jfjmusic.dllo.baidumusic.model.bean.MLRecommendBean;
 import com.jfjmusic.dllo.baidumusic.utils.L;
 import com.jfjmusic.dllo.baidumusic.utils.ScreenSizeUtil;
-import com.squareup.picasso.Cache;
-import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -28,22 +24,22 @@ import java.util.List;
 
 /**
  * Created by dllo on 16/9/14.
- * 乐库-->歌单----的recyclerview的Adapter
+ * 乐库-->推荐-->歌单推荐----的recyclerview的Adapter
  */
-public class MLSongListRecyclerAdapter extends RecyclerView.Adapter<MLSongListRecyclerAdapter.ViewHolder> {
+public class MLRecommentDiyRecyclerAdapter extends RecyclerView.Adapter<MLRecommentDiyRecyclerAdapter.ViewHolder> {
 
     private Context context;
     private ViewHolder viewHolder;
-    private List<MLSongLIstBean.ContentBean> datas;
+    private List<MLRecommendBean.ResultBean.DiyBean.DiyResultBean> datas;
 
-    private int height = ScreenSizeUtil.getScreenSize(ScreenSizeUtil.ScreenState.WIDTH) / 2 - 40;
-    private int width = ScreenSizeUtil.getScreenSize(ScreenSizeUtil.ScreenState.WIDTH) / 2 - 40;
+    private int height = ScreenSizeUtil.getScreenSize(ScreenSizeUtil.ScreenState.WIDTH) / 3 - 40;
+    private int width = ScreenSizeUtil.getScreenSize(ScreenSizeUtil.ScreenState.WIDTH) / 3 - 40;
 
-    public MLSongListRecyclerAdapter(Context context) {
+    public MLRecommentDiyRecyclerAdapter(Context context) {
         this.context = context;
     }
 
-    public void setDatas(List<MLSongLIstBean.ContentBean> datas) {
+    public void setDatas(List<MLRecommendBean.ResultBean.DiyBean.DiyResultBean> datas) {
         this.datas = datas;
         notifyDataSetChanged();
     }
@@ -77,7 +73,7 @@ public class MLSongListRecyclerAdapter extends RecyclerView.Adapter<MLSongListRe
         holder.titleTv.setText(datas.get(position).getTitle());
         holder.typetv.setText(datas.get(position).getTag());
 
-        final String imgurl = datas.get(position).getPic_300();
+        final String imgurl = datas.get(position).getPic();
         /**
          * 在这里解决了RecyclerView缓存机制导致图片显示错乱的问题
          */
@@ -86,13 +82,12 @@ public class MLSongListRecyclerAdapter extends RecyclerView.Adapter<MLSongListRe
         holder.img.setTag(imgurl);
 
         //先设置图片占位符
-        //holder.img.setImageDrawable(context.getDrawable(R.mipmap.ic_classify_img02));
-            holder.img.setImageDrawable(context.getDrawable(R.mipmap.ic_classify_img02));
+        holder.img.setImageDrawable(context.getDrawable(R.mipmap.ic_classify_img02));
         AsyncTask asyncTask = new AsyncTask() {
             @Override
             protected Object doInBackground(Object[] params) {
                 try {
-                    URL url = new URL(datas.get(position).getPic_300());
+                    URL url = new URL(datas.get(position).getPic());
                     Bitmap bitmap = BitmapFactory.decodeStream(url.openStream());
                     return bitmap;
                 } catch (MalformedURLException e) {
