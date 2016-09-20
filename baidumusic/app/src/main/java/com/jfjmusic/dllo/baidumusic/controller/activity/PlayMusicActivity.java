@@ -15,11 +15,18 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.jfjmusic.dllo.baidumusic.R;
 import com.jfjmusic.dllo.baidumusic.controller.adapter.viewpager.PlayAcViewPagerAdapter;
 import com.jfjmusic.dllo.baidumusic.controller.fragment.play.LeftPlayFragment;
 import com.jfjmusic.dllo.baidumusic.controller.fragment.play.MiddlePlayFragment;
 import com.jfjmusic.dllo.baidumusic.controller.fragment.play.RightPlayFragment;
+import com.jfjmusic.dllo.baidumusic.model.bean.MLRadioBean;
+import com.jfjmusic.dllo.baidumusic.model.bean.PlayBean;
+import com.jfjmusic.dllo.baidumusic.model.net.VolleyInstance;
+import com.jfjmusic.dllo.baidumusic.model.net.VolleyResult;
+import com.jfjmusic.dllo.baidumusic.utils.L;
+import com.jfjmusic.dllo.baidumusic.utils.Unique;
 
 import net.qiujuer.genius.blur.StackBlur;
 
@@ -39,6 +46,7 @@ public class PlayMusicActivity extends AbsBaseActivity{
     private PlayAcViewPagerAdapter playAdapter;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+
 
     @Override
     protected int setLayout() {
@@ -70,7 +78,13 @@ public class PlayMusicActivity extends AbsBaseActivity{
             tabLayout.getTabAt(i).setCustomView(playAdapter.getTabView(i));
         }
 
+
+
+
+
+
     }
+
 
     /**
      * 实现高斯模糊

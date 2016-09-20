@@ -5,13 +5,20 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.View;
+import android.widget.LinearLayout;
 
+import com.google.gson.Gson;
 import com.jfjmusic.dllo.baidumusic.R;
 import com.jfjmusic.dllo.baidumusic.controller.fragment.mine.MICurrentPlayFragment;
 import com.jfjmusic.dllo.baidumusic.controller.fragment.mine.MiLocalMusicFragment;
 import com.jfjmusic.dllo.baidumusic.controller.fragment.MainFragment;
+import com.jfjmusic.dllo.baidumusic.model.bean.PlayBean;
+import com.jfjmusic.dllo.baidumusic.model.net.VolleyInstance;
+import com.jfjmusic.dllo.baidumusic.model.net.VolleyResult;
 import com.jfjmusic.dllo.baidumusic.utils.L;
 import com.jfjmusic.dllo.baidumusic.utils.Unique;
 
@@ -22,6 +29,8 @@ public class MainActivity extends AbsBaseActivity {
     private MainFragment mainFragment;
     //定义广播接受者
     private MyBroadReceiver myBroadReceiver;
+    private PlayBean playBean;
+    private LinearLayout textMiniBarLL;
 
 
     @Override
@@ -34,10 +43,13 @@ public class MainActivity extends AbsBaseActivity {
         mFragmentManager = getSupportFragmentManager();
         mTransaction = mFragmentManager.beginTransaction();
         mainFragment = new MainFragment();
+        textMiniBarLL=byView(R.id.ac_main_minibar_text);
         /**
          * 动态注册广播
          */
         registerBroad();
+
+
     }
 
     @Override
@@ -50,6 +62,17 @@ public class MainActivity extends AbsBaseActivity {
         //mTransaction.addToBackStack(null);
         /******/
         mTransaction.commit();
+        textMiniBarLL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getNetDatas();
+                Intent intent=new Intent(MainActivity.this,PlayMusicActivity.class);
+                Bundle bundle=new Bundle();
+                bundle.putSerializable("playbean",playBean);
+                intent.putExtra("bean",bundle);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -111,6 +134,22 @@ public class MainActivity extends AbsBaseActivity {
         registerReceiver(myBroadReceiver, intentFilter);
     }
 
+    //获取网络数据
+    protected void getNetDatas() {
+        VolleyInstance.getVolleyInstance().startRequest(Unique.PLAY_CURRENT_MUSIC, new VolleyResult() {
+            @Override
+            public void success(String resultStr) {
+                L.d("当前播放音乐" + resultStr);
+                Gson gson = new Gson();
+                playBean = gson.fromJson(resultStr, PlayBean.class);
+            }
+
+            @Override
+            public void failure() {
+                L.d("失败");
+            }
+        });
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();

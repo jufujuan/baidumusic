@@ -61,7 +61,10 @@ public final class Unique {
      * 推荐界面的网址
      */
     public final static String ML_RECOMMEND="http://tingapi.ting.baidu.com/v1/restserver/ting?from=android&version=5.8.2.0&channel=vivo&operator=0&method=baidu.ting.plaza.index&cuid=D39E874BD13170332B889C3E2F9F6C0B";
-
+    /**
+     * 当前播放音乐的网址
+     */
+    public final static String PLAY_CURRENT_MUSIC="http://tingapi.ting.baidu.com/v1/restserver/ting?from=android&version=5.8.2.0&channel=vivo&operator=0&method=baidu.ting.search.lrcpic&format=json&query=%E6%97%B6%E5%85%89%E8%AF%9B%E4%BB%99$$%E7%8E%8B%E5%AD%90%E6%96%87%2C%E4%BB%BB%E8%B4%A4%E9%BD%90&ts=1474290158496&e=ppoCLnl5gToVxgVjQMf63aIVvo2JxG%2Fn1i%2FH5GFszRGRZh0HdnHSzu4QT2Yauzw2SB1EI3xaHUZhZc0S4kj9pw%3D%3D";
 
 
 }

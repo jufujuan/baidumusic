@@ -54,7 +54,7 @@ public class KtvFragment extends AbsBaseFragment {
     @Override
     protected void initDatas() {
         getNetDatas();
-        mAdapter.setDatas(datas);
+
         listView.setAdapter(mAdapter);
     }
     //获取网络数据
@@ -66,6 +66,7 @@ public class KtvFragment extends AbsBaseFragment {
                 Gson gson = new Gson();
                 KtvAllSingBean bean = gson.fromJson(resultStr, KtvAllSingBean.class);
                 datas = bean.getResult().getItems();
+                mAdapter.setDatas(datas);
             }
 
             @Override
