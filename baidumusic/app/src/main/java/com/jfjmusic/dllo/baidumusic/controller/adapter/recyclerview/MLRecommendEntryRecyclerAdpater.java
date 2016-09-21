@@ -31,8 +31,8 @@ public class MLRecommendEntryRecyclerAdpater extends RecyclerView.Adapter<MLReco
     private Context context;
     private List<MLRecommendBean.ResultBean.EntryBean.EntryResultBean> datas;
     private ViewHolder viewHolder;
-    private int height = ScreenSizeUtil.getScreenSize(ScreenSizeUtil.ScreenState.WIDTH) / 8 ;
-    private int width = ScreenSizeUtil.getScreenSize(ScreenSizeUtil.ScreenState.WIDTH) / 8 ;
+    private int height = ScreenSizeUtil.getScreenSize(ScreenSizeUtil.ScreenState.WIDTH) / 8;
+    private int width = ScreenSizeUtil.getScreenSize(ScreenSizeUtil.ScreenState.WIDTH) / 8;
 
 
     public MLRecommendEntryRecyclerAdpater(Context context) {
@@ -66,7 +66,7 @@ public class MLRecommendEntryRecyclerAdpater extends RecyclerView.Adapter<MLReco
         holder.img.setTag(imgurl);
 
         //先设置图片占位符
-            holder.img.setImageDrawable(context.getDrawable(R.mipmap.ic_classify_img02));
+        holder.img.setImageDrawable(context.getDrawable(R.mipmap.ic_classify_img02));
 
         AsyncTask asyncTask = new AsyncTask() {
             @Override
