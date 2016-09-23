@@ -65,11 +65,11 @@ public class MainActivity extends AbsBaseActivity {
         textMiniBarLL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getNetDatas();
+               // getNetDatas();
                 Intent intent=new Intent(MainActivity.this,PlayMusicActivity.class);
-                Bundle bundle=new Bundle();
-                bundle.putSerializable("playbean",playBean);
-                intent.putExtra("bean",bundle);
+//                Bundle bundle=new Bundle();
+//                bundle.putSerializable("playbean",playBean);
+//                intent.putExtra("bean",bundle);
                 startActivity(intent);
             }
         });

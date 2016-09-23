@@ -1,43 +1,49 @@
 package com.jfjmusic.dllo.baidumusic.controller.activity;
 
-import android.content.BroadcastReceiver;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.os.Parcelable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.jfjmusic.dllo.baidumusic.R;
 import com.jfjmusic.dllo.baidumusic.controller.adapter.viewpager.PlayAcViewPagerAdapter;
 import com.jfjmusic.dllo.baidumusic.controller.fragment.play.LeftPlayFragment;
 import com.jfjmusic.dllo.baidumusic.controller.fragment.play.MiddlePlayFragment;
 import com.jfjmusic.dllo.baidumusic.controller.fragment.play.RightPlayFragment;
-import com.jfjmusic.dllo.baidumusic.model.bean.MusicBean;
 import com.jfjmusic.dllo.baidumusic.model.bean.PlayBean;
+import com.jfjmusic.dllo.baidumusic.model.net.VolleyInstance;
+import com.jfjmusic.dllo.baidumusic.model.net.VolleyResult;
+import com.jfjmusic.dllo.baidumusic.utils.L;
 import com.jfjmusic.dllo.baidumusic.utils.MusicService;
+import com.jfjmusic.dllo.baidumusic.utils.Unique;
 
 import net.qiujuer.genius.blur.StackBlur;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -58,19 +64,44 @@ public class PlayMusicActivity extends AbsBaseActivity implements View.OnClickLi
     private PlayAcViewPagerAdapter playAdapter;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private GestureDetector gestureDetector;
+    private ImageView finishBtn;
+    //用于判断是否正在播放,默认是不播放的
+    private Boolean isPlay=false;
 
+    /**
+     * 定义音乐播放列表
+     */
+    private static String currentUrl;
 
     private ImageView pauseBtn, nextBtn, beforBtn;
-    private TextView titleTv, nameTv ,timeTv;
+    private TextView titleTv, nameTv, timeTv;
     private SeekBar seekBar;
-    private Intent getIntent;
+
+    private StringBuffer buffer;//用于存储音乐接口的数据(进行分离后的数据)
+    private String musicUrl = Unique.PLAY_MUSIC_BEFORE + "270852097" + Unique.PLAY_MUSIC_AFTER;
+    private static List<String> urlDatas = new ArrayList<>();
 
     /**
      * 服务相关的声明
      */
-    private MusicService musicService;
-    private MusicService.MusicBinder binder;
-    private ServiceConnection conn;
+    // private MediaPlayer mp;
+    private Intent intent;//用来与服务进行通信
+    private MusicService.MyBinder musicBinder;//用来得到服务中的各种方法
+    //这里是必须写的方法,用来连接服务
+    private ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            musicBinder = (MusicService.MyBinder) service;
+            //绑定服务后,启动刷新进度条线程
+//            new Thread(new MpsRunnable()).start();//这个线程死循环监听
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
+    };
 
     // 播放器相关
     // 随时通知进度条刷新的Runnable
@@ -79,44 +110,37 @@ public class PlayMusicActivity extends AbsBaseActivity implements View.OnClickLi
         public boolean handleMessage(Message msg) {
             switch (msg.what) {
                 case 100:
-                    int pos = (int) msg.obj;
-                    Log.d("MainActivity", "pos:" + pos);
-                    seekBar.setProgress(pos);
-                    syncDuration();
+                    int index = (int) msg.obj;
+                    seekBar.setProgress(index);
                     break;
-                case 101:
-
-                    break;
-
             }
             return false;
         }
     });
-
-    private class NotifySeekBarRunnable implements Runnable {
-
+    //控制进度条的线程
+    private class MpsRunnable implements Runnable {
         @Override
         public void run() {
+            //如果音乐播放就获取进度
             while (true) {
-                if (binder != null && binder.getPlayerState()) {
-                    Message msg = new Message();
-                    msg.what = 100;
-                    msg.obj = binder.getCurrentPos();
-                    Log.d("NotifySeekBarRunnable", "msg.obj:" + msg.obj);
-                    handler.sendMessage(msg);
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                if (musicBinder != null) {
+                    //如果音乐播放了就获取进度
+                    if (musicBinder.getMp3IsPalying()) {
+                        int prograss = musicBinder.getMp3CurrentPostion();
+                        Message message = new Message();
+                        message.what = 100;
+                        message.obj = prograss;
+                        handler.sendMessage(message);
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
         }
     }
-
-
-
-
 
     @Override
     protected int setLayout() {
@@ -137,38 +161,67 @@ public class PlayMusicActivity extends AbsBaseActivity implements View.OnClickLi
         seekBar = byView(R.id.ac_play_seekbar);
         titleTv = byView(R.id.ac_play_song_title);
         nameTv = byView(R.id.ac_play_song_name);
-        timeTv=byView(R.id.ac_play_song_all_time);
-        // 获得从上一个activity中获取的数据
-        getIntent = getIntent();
-        Bundle bundle = getIntent.getBundleExtra("bean");
-        PlayBean bean = (PlayBean) bundle.getSerializable("playbean");
+        timeTv = byView(R.id.ac_play_song_all_time);
+
+        finishBtn=byView(R.id.ac_play_music_finish);
+
+        buffer = new StringBuffer();
+        //绑定服务
+        intent = new Intent(PlayMusicActivity.this, MusicService.class);
+        bindService(intent, serviceConnection, BIND_AUTO_CREATE);
     }
 
     @Override
     protected void initDatas() {
-        //applyBlur();
+        new Thread(new MpsRunnable()).start();
+        //添加tablayout等的适配器信息等
         addTab();
+        //单击事件设置监听
         pauseBtn.setOnClickListener(this);
         nextBtn.setOnClickListener(this);
         beforBtn.setOnClickListener(this);
+        finishBtn.setOnClickListener(this);
 
+        VolleyInstance.getVolleyInstance().startRequest(musicUrl, new VolleyResult() {
+            @Override
+            public void success(String resultStr) {
+                String newStr = resultStr.substring(1, resultStr.length() - 2);
+                PlayBean playBean = new Gson().fromJson(newStr, PlayBean.class);
+                currentUrl=playBean.getBitrate().getFile_link();
+                urlDatas.add(currentUrl);
+                L.d("在数据网络解析中"+currentUrl);
+                Intent intentMusic = new Intent();
+                intentMusic.setAction("com.jfjmusic.dllo.baidumusic.utils.MusicReceiver");
+                intentMusic.putStringArrayListExtra("name", (ArrayList<String>) urlDatas);
+                sendBroadcast(intentMusic);
+            }
+            @Override
+            public void failure() {
 
-     /******************************************/
-        // 开启服务
-        initService();
-        // 初始化SeekBar
-        initSeekBar();
+            }
+        });
 
-
-
-    }
-    private void initSeekBar() {
+        //实现下滑关闭
+        gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+                if ((e2.getRawY() - e1.getRawY()) > 200) {
+                    finish();
+                    return true;
+                }
+                return false;
+            }
+        });
+        /******************************************/
+        //实现快进快退,给进度条状态设置监听事件
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (fromUser) {
-                    if (binder != null) {
-                        binder.setCurrentPos(progress);
+                    if (musicBinder != null) {
+                        //改变音乐进度
+                        musicBinder.goGOGO(progress);
+                        //进度条改变进度
                         seekBar.setProgress(progress);
                     }
                 }
@@ -185,29 +238,47 @@ public class PlayMusicActivity extends AbsBaseActivity implements View.OnClickLi
             }
         });
     }
-    private void initService() {
-        // 初始化服务
-        musicService = new MusicService();
-        // 开启服务需要的Intent
-        Intent intent = new Intent(PlayMusicActivity.this, MusicService.class);
-        // 开启服务需要的服务链接
-        conn = new ServiceConnection() {
-            @Override
-            public void onServiceConnected(ComponentName name, IBinder service) {
-                binder = (MusicService.MusicBinder) service;
-                // 启动通知线程
-                new Thread(new NotifySeekBarRunnable()).start();
-            }
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            /**
+             * 播放上一曲
+             */
+            case R.id.ac_play_before:
+                musicBinder.pastMp3();
+                break;
+            /**
+             * 播放当前歌曲
+             */
+            case R.id.ac_play_pause:
 
-            @Override
-            public void onServiceDisconnected(ComponentName name) {
-
-            }
-        };
-        // 绑定服务
-        bindService(intent, conn, BIND_AUTO_CREATE);
+                if (isPlay){
+                    isPlay=false;
+                    pauseBtn.setImageResource(R.mipmap.bt_widget_play_press);
+                }else {
+                    isPlay=true;
+                    pauseBtn.setImageResource(R.mipmap.bt_widget_pause_press);
+                }
+                L.d("在activity中是否有数据"+urlDatas.size());
+                if (seekBar.getProgress()==0){
+                    musicBinder.playMp3();
+                    seekBar.setMax(musicBinder.getMp3Duration());
+                }else{
+                    musicBinder.pauseMp3();
+                }
+                break;
+            /**
+             * 播放下一曲
+             */
+            case R.id.ac_play_next:
+                musicBinder.nextMp3();
+                break;
+            //点击退出事件
+            case R.id.ac_play_music_finish:
+                finish();
+                break;
+        }
     }
-
 
 
     /**
@@ -227,69 +298,9 @@ public class PlayMusicActivity extends AbsBaseActivity implements View.OnClickLi
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.ac_play_before:
-                if (binder != null) {
-
-                    binder.lastMusic();
-                }
-                break;
-            case R.id.ac_play_pause:
-                if (binder != null) {
-                    setMusicInfo();
-                    binder.playCurrentMusic();
-                }
-                break;
-            case R.id.ac_play_next:
-                if (binder != null) {
-                    binder.nextMusic();
-                }
-                break;
-        }
+    public boolean onTouchEvent(MotionEvent event) {
+        return gestureDetector.onTouchEvent(event);
     }
-
-
-
-    private void setMusicInfo() {
-        if (binder != null) {
-            MusicBean bean = binder.getCurrentMusicBean();
-            Log.d("PlayMusicActivity", bean.getTitle());
-            titleTv.setText(bean.getTitle());
-            nameTv.setText(bean.getSinger());
-            seekBar.setMax(binder.getCurrentDuration());
-        }
-    }
-
-    private void syncDuration() {
-        if (binder != null) {
-            long currentDuration = binder.getCurrentPos();
-            long duration = currentDuration;
-            duration = duration / 1000;
-            String minute = add0(String.valueOf(duration / 60));
-            String second = add0(String.valueOf(duration % 60));
-            timeTv.setText(minute + ":" + second);
-        }
-    }
-
-    private String add0(String l) {
-        StringBuffer temp = new StringBuffer(l);
-        if (temp.length() == 1) {
-            temp = new StringBuffer();
-            temp.append("0");
-            temp.append(l);
-        }
-        return temp.toString();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        binder.stopMusic();
-        unbindService(conn);
-    }
-
-
 
     /**
      * 实现高斯模糊
@@ -311,5 +322,15 @@ public class PlayMusicActivity extends AbsBaseActivity implements View.OnClickLi
         return mCompressBitmap;
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //解绑
+        unbindService(serviceConnection);
+        if (musicBinder != null) {
+            musicBinder.stopMp3();
+        }
+        //置空传值对象
+        musicBinder = null;
+    }
 }

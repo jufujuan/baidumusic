@@ -1,50 +1,72 @@
 package com.jfjmusic.dllo.baidumusic.model.bean;
 
-import android.os.Parcelable;
-
 import java.io.Serializable;
 
 /**
  * Created by dllo on 16/9/19.
  * 音乐播放的实体类
+ * 拼接songid后的音乐网址中的实体类
  */
 public class PlayBean implements Serializable {
 
     /**
+     * special_type : 0
+     * pic_huge : http://musicdata.baidu.com/data2/pic/2d017baa55e8c90b5d543af2b76ff54a/270973933/270973933.jpg
+     * resource_type : 0
+     * pic_premium : http://musicdata.baidu.com/data2/pic/b5718147a5b1dfd56cfbc5c2c1d334d8/270974206/270974206.jpg
+     * havehigh : 2
+     * author : 韩红
+     * toneid : 0
+     * has_mv : 0
+     * song_id : 270974196
+     * piao_id : 0
+     * artist_id : 362
+     * lrclink : http://musicdata.baidu.com/data2/lrc/7f3a7ebec1ccc54a6c1777838d2bb278/270974904/270974904.lrc
+     * relate_status : 0
+     * learn : 0
+     * pic_big : http://musicdata.baidu.com/data2/pic/d743415ce7f058d5ec5ebcfdda6f7cdc/270973904/270973904.jpg
+     * play_type : 0
+     * album_id : 270973920
+     * album_title : 灵犀一动
+     * bitrate_fee : {"0":"0|0","1":"0|0"}
+     * song_source : web
+     * all_artist_id : 362
+     * all_artist_ting_uid : 1219
+     * all_rate : 64,128,256,320,flac
+     * charge : 0
+     * copy_type : 0
+     * is_first_publish : 0
+     * korean_bb_song : 0
+     * pic_radio : http://musicdata.baidu.com/data2/pic/b8a46848c5e548ae986b1e308ebf613b/270973901/270973901.jpg
+     * has_mv_mobile : 0
+     * title : 灵犀一动
+     * pic_small : http://musicdata.baidu.com/data2/pic/26adb10cdb536f883a975b438d53a2ba/270973907/270973907.jpg
+     * album_no : 1
+     * resource_type_ext : 0
+     * ting_uid : 1219
+     */
+
+    private SonginfoBean songinfo;
+    /**
+     * songinfo : {"special_type":0,"pic_huge":"http://musicdata.baidu.com/data2/pic/2d017baa55e8c90b5d543af2b76ff54a/270973933/270973933.jpg","resource_type":"0","pic_premium":"http://musicdata.baidu.com/data2/pic/b5718147a5b1dfd56cfbc5c2c1d334d8/270974206/270974206.jpg","havehigh":2,"author":"韩红","toneid":"0","has_mv":0,"song_id":"270974196","piao_id":"0","artist_id":"362","lrclink":"http://musicdata.baidu.com/data2/lrc/7f3a7ebec1ccc54a6c1777838d2bb278/270974904/270974904.lrc","relate_status":"0","learn":0,"pic_big":"http://musicdata.baidu.com/data2/pic/d743415ce7f058d5ec5ebcfdda6f7cdc/270973904/270973904.jpg","play_type":0,"album_id":"270973920","album_title":"灵犀一动","bitrate_fee":"{\"0\":\"0|0\",\"1\":\"0|0\"}","song_source":"web","all_artist_id":"362","all_artist_ting_uid":"1219","all_rate":"64,128,256,320,flac","charge":0,"copy_type":"0","is_first_publish":0,"korean_bb_song":"0","pic_radio":"http://musicdata.baidu.com/data2/pic/b8a46848c5e548ae986b1e308ebf613b/270973901/270973901.jpg","has_mv_mobile":0,"title":"灵犀一动","pic_small":"http://musicdata.baidu.com/data2/pic/26adb10cdb536f883a975b438d53a2ba/270973907/270973907.jpg","album_no":"1","resource_type_ext":"0","ting_uid":"1219"}
      * error_code : 22000
-     * songinfo : {"pic_radio":"http://musicdata.baidu.com/data2/pic/5cde6ee9fa55f49040e6f6c870965f1e/268386312/268386312.jpg","artist_480_800":"","album_id":268386751,"author":"王子文,任贤齐","artist_1000_1000":"","artist_640_1136":"","artist_500_500":"","lrc_md5":"38b9f84e5504e4968d1c77491c9b54c5","artist_id":264865152,"song_id":268386617,"song_title":"时光诛仙","title":"时光诛仙","lrclink":"http://musicdata.baidu.com/data2/lrc/0ac6080e796433986145a16bf9b75696/268817313/268817313.lrc","pic_type":2,"pic_s500":"","album_500_500":"http://musicdata.baidu.com/data2/pic/0012cd97de40d35c50e9e44f2f508997/268386764/268386764.jpg","album_1000_1000":"http://musicdata.baidu.com/data2/pic/aab94b7b5ac0b000baa250a748cca2eb/268386763/268386763.jpg"}
+     * bitrate : {"show_link":"http://zhangmenshiting.baidu.com/data2/music/318074dba1bcfd02d9f1724c758bfa94/270974819/270974819.mp3?xcode=d93bc32a529c1b3548ae5c20176c0886","free":1,"song_file_id":270974819,"file_size":2248676,"file_extension":"mp3","file_duration":280,"file_bitrate":64,"file_link":"http://yinyueshiting.baidu.com/data2/music/318074dba1bcfd02d9f1724c758bfa94/270974819/270974819.mp3?xcode=d93bc32a529c1b3548ae5c20176c0886","hash":"1e83f916c847aabb02136253dd65a320932b583d"}
      */
 
     private int error_code;
     /**
-     * pic_radio : http://musicdata.baidu.com/data2/pic/5cde6ee9fa55f49040e6f6c870965f1e/268386312/268386312.jpg
-     * artist_480_800 :
-     * album_id : 268386751
-     * author : 王子文,任贤齐
-     * artist_1000_1000 :
-     * artist_640_1136 :
-     * artist_500_500 :
-     * lrc_md5 : 38b9f84e5504e4968d1c77491c9b54c5
-     * artist_id : 264865152
-     * song_id : 268386617
-     * song_title : 时光诛仙
-     * title : 时光诛仙
-     * lrclink : http://musicdata.baidu.com/data2/lrc/0ac6080e796433986145a16bf9b75696/268817313/268817313.lrc
-     * pic_type : 2
-     * pic_s500 :
-     * album_500_500 : http://musicdata.baidu.com/data2/pic/0012cd97de40d35c50e9e44f2f508997/268386764/268386764.jpg
-     * album_1000_1000 : http://musicdata.baidu.com/data2/pic/aab94b7b5ac0b000baa250a748cca2eb/268386763/268386763.jpg
+     * show_link : http://zhangmenshiting.baidu.com/data2/music/318074dba1bcfd02d9f1724c758bfa94/270974819/270974819.mp3?xcode=d93bc32a529c1b3548ae5c20176c0886
+     * free : 1
+     * song_file_id : 270974819
+     * file_size : 2248676
+     * file_extension : mp3
+     * file_duration : 280
+     * file_bitrate : 64
+     * file_link : http://yinyueshiting.baidu.com/data2/music/318074dba1bcfd02d9f1724c758bfa94/270974819/270974819.mp3?xcode=d93bc32a529c1b3548ae5c20176c0886
+     * hash : 1e83f916c847aabb02136253dd65a320932b583d
      */
 
-    private SonginfoBean songinfo;
-
-    public int getError_code() {
-        return error_code;
-    }
-
-    public void setError_code(int error_code) {
-        this.error_code = error_code;
-    }
+    private BitrateBean bitrate;
 
     public SonginfoBean getSonginfo() {
         return songinfo;
@@ -54,47 +76,96 @@ public class PlayBean implements Serializable {
         this.songinfo = songinfo;
     }
 
+    public int getError_code() {
+        return error_code;
+    }
+
+    public void setError_code(int error_code) {
+        this.error_code = error_code;
+    }
+
+    public BitrateBean getBitrate() {
+        return bitrate;
+    }
+
+    public void setBitrate(BitrateBean bitrate) {
+        this.bitrate = bitrate;
+    }
+
     public static class SonginfoBean {
-        private String pic_radio;
-        private String artist_480_800;
-        private int album_id;
+        private int special_type;
+        private String pic_huge;
+        private String resource_type;
+        private String pic_premium;
+        private int havehigh;
         private String author;
-        private String artist_1000_1000;
-        private String artist_640_1136;
-        private String artist_500_500;
-        private String lrc_md5;
-        private int artist_id;
-        private int song_id;
-        private String song_title;
-        private String title;
+        private String toneid;
+        private int has_mv;
+        private String song_id;
+        private String piao_id;
+        private String artist_id;
         private String lrclink;
-        private int pic_type;
-        private String pic_s500;
-        private String album_500_500;
-        private String album_1000_1000;
+        private String relate_status;
+        private int learn;
+        private String pic_big;
+        private int play_type;
+        private String album_id;
+        private String album_title;
+        private String bitrate_fee;
+        private String song_source;
+        private String all_artist_id;
+        private String all_artist_ting_uid;
+        private String all_rate;
+        private int charge;
+        private String copy_type;
+        private int is_first_publish;
+        private String korean_bb_song;
+        private String pic_radio;
+        private int has_mv_mobile;
+        private String title;
+        private String pic_small;
+        private String album_no;
+        private String resource_type_ext;
+        private String ting_uid;
 
-        public String getPic_radio() {
-            return pic_radio;
+        public int getSpecial_type() {
+            return special_type;
         }
 
-        public void setPic_radio(String pic_radio) {
-            this.pic_radio = pic_radio;
+        public void setSpecial_type(int special_type) {
+            this.special_type = special_type;
         }
 
-        public String getArtist_480_800() {
-            return artist_480_800;
+        public String getPic_huge() {
+            return pic_huge;
         }
 
-        public void setArtist_480_800(String artist_480_800) {
-            this.artist_480_800 = artist_480_800;
+        public void setPic_huge(String pic_huge) {
+            this.pic_huge = pic_huge;
         }
 
-        public int getAlbum_id() {
-            return album_id;
+        public String getResource_type() {
+            return resource_type;
         }
 
-        public void setAlbum_id(int album_id) {
-            this.album_id = album_id;
+        public void setResource_type(String resource_type) {
+            this.resource_type = resource_type;
+        }
+
+        public String getPic_premium() {
+            return pic_premium;
+        }
+
+        public void setPic_premium(String pic_premium) {
+            this.pic_premium = pic_premium;
+        }
+
+        public int getHavehigh() {
+            return havehigh;
+        }
+
+        public void setHavehigh(int havehigh) {
+            this.havehigh = havehigh;
         }
 
         public String getAuthor() {
@@ -105,68 +176,44 @@ public class PlayBean implements Serializable {
             this.author = author;
         }
 
-        public String getArtist_1000_1000() {
-            return artist_1000_1000;
+        public String getToneid() {
+            return toneid;
         }
 
-        public void setArtist_1000_1000(String artist_1000_1000) {
-            this.artist_1000_1000 = artist_1000_1000;
+        public void setToneid(String toneid) {
+            this.toneid = toneid;
         }
 
-        public String getArtist_640_1136() {
-            return artist_640_1136;
+        public int getHas_mv() {
+            return has_mv;
         }
 
-        public void setArtist_640_1136(String artist_640_1136) {
-            this.artist_640_1136 = artist_640_1136;
+        public void setHas_mv(int has_mv) {
+            this.has_mv = has_mv;
         }
 
-        public String getArtist_500_500() {
-            return artist_500_500;
-        }
-
-        public void setArtist_500_500(String artist_500_500) {
-            this.artist_500_500 = artist_500_500;
-        }
-
-        public String getLrc_md5() {
-            return lrc_md5;
-        }
-
-        public void setLrc_md5(String lrc_md5) {
-            this.lrc_md5 = lrc_md5;
-        }
-
-        public int getArtist_id() {
-            return artist_id;
-        }
-
-        public void setArtist_id(int artist_id) {
-            this.artist_id = artist_id;
-        }
-
-        public int getSong_id() {
+        public String getSong_id() {
             return song_id;
         }
 
-        public void setSong_id(int song_id) {
+        public void setSong_id(String song_id) {
             this.song_id = song_id;
         }
 
-        public String getSong_title() {
-            return song_title;
+        public String getPiao_id() {
+            return piao_id;
         }
 
-        public void setSong_title(String song_title) {
-            this.song_title = song_title;
+        public void setPiao_id(String piao_id) {
+            this.piao_id = piao_id;
         }
 
-        public String getTitle() {
-            return title;
+        public String getArtist_id() {
+            return artist_id;
         }
 
-        public void setTitle(String title) {
-            this.title = title;
+        public void setArtist_id(String artist_id) {
+            this.artist_id = artist_id;
         }
 
         public String getLrclink() {
@@ -177,36 +224,264 @@ public class PlayBean implements Serializable {
             this.lrclink = lrclink;
         }
 
-        public int getPic_type() {
-            return pic_type;
+        public String getRelate_status() {
+            return relate_status;
         }
 
-        public void setPic_type(int pic_type) {
-            this.pic_type = pic_type;
+        public void setRelate_status(String relate_status) {
+            this.relate_status = relate_status;
         }
 
-        public String getPic_s500() {
-            return pic_s500;
+        public int getLearn() {
+            return learn;
         }
 
-        public void setPic_s500(String pic_s500) {
-            this.pic_s500 = pic_s500;
+        public void setLearn(int learn) {
+            this.learn = learn;
         }
 
-        public String getAlbum_500_500() {
-            return album_500_500;
+        public String getPic_big() {
+            return pic_big;
         }
 
-        public void setAlbum_500_500(String album_500_500) {
-            this.album_500_500 = album_500_500;
+        public void setPic_big(String pic_big) {
+            this.pic_big = pic_big;
         }
 
-        public String getAlbum_1000_1000() {
-            return album_1000_1000;
+        public int getPlay_type() {
+            return play_type;
         }
 
-        public void setAlbum_1000_1000(String album_1000_1000) {
-            this.album_1000_1000 = album_1000_1000;
+        public void setPlay_type(int play_type) {
+            this.play_type = play_type;
+        }
+
+        public String getAlbum_id() {
+            return album_id;
+        }
+
+        public void setAlbum_id(String album_id) {
+            this.album_id = album_id;
+        }
+
+        public String getAlbum_title() {
+            return album_title;
+        }
+
+        public void setAlbum_title(String album_title) {
+            this.album_title = album_title;
+        }
+
+        public String getBitrate_fee() {
+            return bitrate_fee;
+        }
+
+        public void setBitrate_fee(String bitrate_fee) {
+            this.bitrate_fee = bitrate_fee;
+        }
+
+        public String getSong_source() {
+            return song_source;
+        }
+
+        public void setSong_source(String song_source) {
+            this.song_source = song_source;
+        }
+
+        public String getAll_artist_id() {
+            return all_artist_id;
+        }
+
+        public void setAll_artist_id(String all_artist_id) {
+            this.all_artist_id = all_artist_id;
+        }
+
+        public String getAll_artist_ting_uid() {
+            return all_artist_ting_uid;
+        }
+
+        public void setAll_artist_ting_uid(String all_artist_ting_uid) {
+            this.all_artist_ting_uid = all_artist_ting_uid;
+        }
+
+        public String getAll_rate() {
+            return all_rate;
+        }
+
+        public void setAll_rate(String all_rate) {
+            this.all_rate = all_rate;
+        }
+
+        public int getCharge() {
+            return charge;
+        }
+
+        public void setCharge(int charge) {
+            this.charge = charge;
+        }
+
+        public String getCopy_type() {
+            return copy_type;
+        }
+
+        public void setCopy_type(String copy_type) {
+            this.copy_type = copy_type;
+        }
+
+        public int getIs_first_publish() {
+            return is_first_publish;
+        }
+
+        public void setIs_first_publish(int is_first_publish) {
+            this.is_first_publish = is_first_publish;
+        }
+
+        public String getKorean_bb_song() {
+            return korean_bb_song;
+        }
+
+        public void setKorean_bb_song(String korean_bb_song) {
+            this.korean_bb_song = korean_bb_song;
+        }
+
+        public String getPic_radio() {
+            return pic_radio;
+        }
+
+        public void setPic_radio(String pic_radio) {
+            this.pic_radio = pic_radio;
+        }
+
+        public int getHas_mv_mobile() {
+            return has_mv_mobile;
+        }
+
+        public void setHas_mv_mobile(int has_mv_mobile) {
+            this.has_mv_mobile = has_mv_mobile;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getPic_small() {
+            return pic_small;
+        }
+
+        public void setPic_small(String pic_small) {
+            this.pic_small = pic_small;
+        }
+
+        public String getAlbum_no() {
+            return album_no;
+        }
+
+        public void setAlbum_no(String album_no) {
+            this.album_no = album_no;
+        }
+
+        public String getResource_type_ext() {
+            return resource_type_ext;
+        }
+
+        public void setResource_type_ext(String resource_type_ext) {
+            this.resource_type_ext = resource_type_ext;
+        }
+
+        public String getTing_uid() {
+            return ting_uid;
+        }
+
+        public void setTing_uid(String ting_uid) {
+            this.ting_uid = ting_uid;
+        }
+    }
+
+    public static class BitrateBean {
+        private String show_link;
+        private int free;
+        private int song_file_id;
+        private int file_size;
+        private String file_extension;
+        private int file_duration;
+        private int file_bitrate;
+        private String file_link;
+        private String hash;
+
+        public String getShow_link() {
+            return show_link;
+        }
+
+        public void setShow_link(String show_link) {
+            this.show_link = show_link;
+        }
+
+        public int getFree() {
+            return free;
+        }
+
+        public void setFree(int free) {
+            this.free = free;
+        }
+
+        public int getSong_file_id() {
+            return song_file_id;
+        }
+
+        public void setSong_file_id(int song_file_id) {
+            this.song_file_id = song_file_id;
+        }
+
+        public int getFile_size() {
+            return file_size;
+        }
+
+        public void setFile_size(int file_size) {
+            this.file_size = file_size;
+        }
+
+        public String getFile_extension() {
+            return file_extension;
+        }
+
+        public void setFile_extension(String file_extension) {
+            this.file_extension = file_extension;
+        }
+
+        public int getFile_duration() {
+            return file_duration;
+        }
+
+        public void setFile_duration(int file_duration) {
+            this.file_duration = file_duration;
+        }
+
+        public int getFile_bitrate() {
+            return file_bitrate;
+        }
+
+        public void setFile_bitrate(int file_bitrate) {
+            this.file_bitrate = file_bitrate;
+        }
+
+        public String getFile_link() {
+            return file_link;
+        }
+
+        public void setFile_link(String file_link) {
+            this.file_link = file_link;
+        }
+
+        public String getHash() {
+            return hash;
+        }
+
+        public void setHash(String hash) {
+            this.hash = hash;
         }
     }
 }

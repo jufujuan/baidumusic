@@ -15,6 +15,7 @@ import com.jfjmusic.dllo.baidumusic.model.net.VolleyInstance;
 import com.jfjmusic.dllo.baidumusic.model.net.VolleyResult;
 import com.jfjmusic.dllo.baidumusic.utils.L;
 import com.jfjmusic.dllo.baidumusic.utils.Unique;
+import com.jfjmusic.dllo.baidumusic.view.FullyGridLayoutManager;
 
 import java.util.List;
 
@@ -57,13 +58,9 @@ public class LiveRadioFragment extends AbsBaseFragment {
     protected void initDatas() {
         //获取上部分分类的网络数据
         getNetClassDatas();
-        mClassAdapter.setDatas(classDatas);
-        classRecyclerView.setAdapter(mClassAdapter);
-        classRecyclerView.setLayoutManager(new GridLayoutManager(context,4));
+
         getNetHotDatas();
-        mHotAdapter.setDatas(hotDatas);
-        hotRecyclerView.setAdapter(mHotAdapter);
-        hotRecyclerView.setLayoutManager(new GridLayoutManager(context,2));
+
 
     }
     //获得上部分分类的网络数据
@@ -75,6 +72,9 @@ public class LiveRadioFragment extends AbsBaseFragment {
                 Gson gson = new Gson();
                 LiveRadioClassBean bean = gson.fromJson(resultStr, LiveRadioClassBean.class);
                 classDatas = bean.getData();
+                mClassAdapter.setDatas(classDatas);
+                classRecyclerView.setAdapter(mClassAdapter);
+                classRecyclerView.setLayoutManager(new FullyGridLayoutManager(context,4));
             }
 
             @Override
@@ -92,6 +92,12 @@ public class LiveRadioFragment extends AbsBaseFragment {
                 Gson gson = new Gson();
                 LiveRadioAllBean bean = gson.fromJson(resultStr, LiveRadioAllBean.class);
                 hotDatas = bean.getData().getData();
+                mHotAdapter.setDatas(hotDatas);
+                hotRecyclerView.setAdapter(mHotAdapter);
+                FullyGridLayoutManager manager = new FullyGridLayoutManager(context, 2);
+                manager.setOrientation(GridLayoutManager.VERTICAL);
+                manager.setSmoothScrollbarEnabled(true);
+                hotRecyclerView.setLayoutManager(manager);
             }
 
             @Override

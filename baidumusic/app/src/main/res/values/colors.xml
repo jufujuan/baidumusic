@@ -10,4 +10,9 @@
     <!--播放界面的viewpager下面的颜色-->
     <color name="playViewPagerSelected">#fff</color>
     <color name="playViewPagerNormal">#b7b7b7</color>
+
+    <!--音乐播放界面-->
+    <!--音乐播放界面半透明的颜色-->
+    <color name="playmuicBg">#55000000</color>
+
 </resources>

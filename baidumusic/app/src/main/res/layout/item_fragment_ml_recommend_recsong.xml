@@ -10,7 +10,7 @@
         android:id="@+id/item_fra_ml_recommend_recsong_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@mipmap/ic_launcher1" />
 
     <LinearLayout
         android:layout_marginLeft="10dp"
@@ -35,5 +35,5 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher"/>
+        android:src="@mipmap/ic_launcher1"/>
 </LinearLayout>

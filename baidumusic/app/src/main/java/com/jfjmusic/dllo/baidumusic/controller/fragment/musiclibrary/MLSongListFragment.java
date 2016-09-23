@@ -3,6 +3,7 @@ package com.jfjmusic.dllo.baidumusic.controller.fragment.musiclibrary;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MotionEvent;
 
 import com.google.gson.Gson;
 import com.jfjmusic.dllo.baidumusic.R;
@@ -12,8 +13,10 @@ import com.jfjmusic.dllo.baidumusic.model.bean.MLSongLIstBean;
 import com.jfjmusic.dllo.baidumusic.model.net.VolleyInstance;
 import com.jfjmusic.dllo.baidumusic.model.net.VolleyResult;
 import com.jfjmusic.dllo.baidumusic.utils.L;
+import com.jfjmusic.dllo.baidumusic.utils.T;
 import com.jfjmusic.dllo.baidumusic.utils.Unique;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,6 +28,8 @@ public class MLSongListFragment extends AbsBaseFragment {
     private RecyclerView mRecyclerView;
     private MLSongListRecyclerAdapter mAdapter;
     private List<MLSongLIstBean.ContentBean> datas;
+    //这个是获取的实体类的全部信息
+    private MLSongLIstBean bean;
 
 
     public static MLSongListFragment newInstance() {
@@ -51,9 +56,25 @@ public class MLSongListFragment extends AbsBaseFragment {
 
         //获得网络数据
         getNetDatas();
-        mAdapter.setDatas(datas);
-        mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(context,2));
+
+        mRecyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+                List<String> songIds=new ArrayList<String>();
+                songIds=bean.getContent().get(0).getSongIds();
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+            }
+        });
     }
     protected void getNetDatas(){
         VolleyInstance.getVolleyInstance().startRequest(Unique.ML_SONG_LIST_URL, new VolleyResult() {
@@ -63,6 +84,9 @@ public class MLSongListFragment extends AbsBaseFragment {
                 Gson gson=new Gson();
                 MLSongLIstBean bean=gson.fromJson(resultStr,MLSongLIstBean.class);
                 datas=bean.getContent();
+                mAdapter.setDatas(datas);
+                mRecyclerView.setAdapter(mAdapter);
+                mRecyclerView.setLayoutManager(new GridLayoutManager(context,2));
             }
 
             @Override
