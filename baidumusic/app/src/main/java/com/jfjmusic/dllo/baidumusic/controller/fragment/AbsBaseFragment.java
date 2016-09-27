@@ -52,7 +52,7 @@ public abstract class AbsBaseFragment extends Fragment{
         /**
          * 添加动画
          */
-        addAnimator();
+//        addAnimator();
     }
     protected void addAnimator(){
 //        FragmentTransaction fragmentTransaction = getFragmentManager()

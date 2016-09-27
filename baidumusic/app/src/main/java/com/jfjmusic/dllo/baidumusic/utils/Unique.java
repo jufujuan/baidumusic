@@ -73,6 +73,36 @@ public final class Unique {
      * 播放音乐的拼接字符串(后)
      */
     public final static String PLAY_MUSIC_AFTER="&_=1413017198449";
-
-
+    /**
+     * 播放列表的数据库表名
+     */
+    private static  final String PLAY_LIST_TABLE_NAME="playlist";
+    /**
+     * 播放列表的表的列名(播放列表的网址或者本地音乐的路径)
+     */
+    private static  final String PLAY_LIST_COLUMN_NAME="url";
+    /**
+     * 播放列表的表的列名(播放列表的网址)
+     */
+    private static  final String PLAY_LIST_COLUMN_TYPE="type";
+    /**
+     * 播放列表的id
+     */
+    private static  final String PLAY_LIST_COLUMN_ID="id";
+    /**
+     * 音乐列表的播放模式-----顺序播放模式
+     */
+    public static final int PLAY_MUSIC_MODE_ORDER = 1;
+    /**
+     * 音乐列表的播放模式-----单曲循环模式
+     */
+    public static final int PLAY_MUSIC_MODE_SINGLE_RECYCLER = 2;
+    /**
+     * 音乐列表的播放模式-----循环播放模式
+     */
+    public static final int PLAY_MUSIC_MODE_ALL_RECYCLER = 3;
+    /**
+     * 音乐列表的播放模式-----随机播放模式
+     */
+    public static final int PLAY_MUSIC_MODE_RANDOM = 4;
 }

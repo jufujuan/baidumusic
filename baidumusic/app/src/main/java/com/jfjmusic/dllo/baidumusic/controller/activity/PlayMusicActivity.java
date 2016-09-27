@@ -4,7 +4,10 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -117,6 +120,10 @@ public class PlayMusicActivity extends AbsBaseActivity implements View.OnClickLi
             return false;
         }
     });
+    private Bitmap imgBg;
+    private PlayBean playBean;
+    private PlayBean playBean1;
+
     //控制进度条的线程
     private class MpsRunnable implements Runnable {
         @Override
@@ -169,6 +176,13 @@ public class PlayMusicActivity extends AbsBaseActivity implements View.OnClickLi
         //绑定服务
         intent = new Intent(PlayMusicActivity.this, MusicService.class);
         bindService(intent, serviceConnection, BIND_AUTO_CREATE);
+
+        Intent intentSongtList=getIntent();
+        if (intentSongtList!=null) {
+            //获得从歌单中得到的音乐列表
+            List<String> songIds = intentSongtList.getStringArrayListExtra("songidlist");
+        }
+
     }
 
     @Override
@@ -186,9 +200,49 @@ public class PlayMusicActivity extends AbsBaseActivity implements View.OnClickLi
             @Override
             public void success(String resultStr) {
                 String newStr = resultStr.substring(1, resultStr.length() - 2);
-                PlayBean playBean = new Gson().fromJson(newStr, PlayBean.class);
-                currentUrl=playBean.getBitrate().getFile_link();
+                playBean1 = new Gson().fromJson(newStr, PlayBean.class);
+                currentUrl= playBean1.getBitrate().getFile_link();
                 urlDatas.add(currentUrl);
+                //设置播放的背景图片
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        L.d("已经进入线程88888888888888888888888888888888888888888");
+                        URL fileUrl = null;
+                        imgBg = null;
+
+                        try {
+
+                            fileUrl = new URL(playBean1.getSonginfo().getPic_big());
+                            L.d("开始获取图片的网址111111111111111111111111111111111"+fileUrl);
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            L.d("图片进行获取22222222222222222222222222222222222222");
+                            HttpURLConnection conn = (HttpURLConnection) fileUrl.openConnection();
+                            L.d("图片获取完毕33333333333333333333333333333333");
+                            InputStream is = conn.getInputStream();
+                            L.d("44444444444444444444444444444444444444444");
+                            imgBg = BitmapFactory.decodeStream(is);
+                            L.d("555555555555555555555555555555555555555555");
+                           // Drawable drawab=new BitmapDrawable(imgBg);
+                           // root.setBackground(drawab);
+                            conn.disconnect();
+                            is.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        if (imgBg!=null) {
+                            L.d("播放界面的图片已经获取到!");
+                            Bitmap imgBlurBg = getBlurBitmap(imgBg);
+                            Drawable drawableBg = new BitmapDrawable(imgBlurBg);
+                            root.setBackground(drawableBg);
+                        }else{
+                            L.d("图片是空的");
+                        }
+                    }
+                }).start();
                 L.d("在数据网络解析中"+currentUrl);
                 Intent intentMusic = new Intent();
                 intentMusic.setAction("com.jfjmusic.dllo.baidumusic.utils.MusicReceiver");
@@ -276,6 +330,7 @@ public class PlayMusicActivity extends AbsBaseActivity implements View.OnClickLi
             //点击退出事件
             case R.id.ac_play_music_finish:
                 finish();
+                Log.d("PlayMusicActivity", "closeeeee");
                 break;
         }
     }
@@ -330,7 +385,7 @@ public class PlayMusicActivity extends AbsBaseActivity implements View.OnClickLi
         if (musicBinder != null) {
             musicBinder.stopMp3();
         }
-        //置空传值对象
+//        置空传值对象
         musicBinder = null;
     }
 }

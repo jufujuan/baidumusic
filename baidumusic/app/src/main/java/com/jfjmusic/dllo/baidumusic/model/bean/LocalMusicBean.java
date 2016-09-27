@@ -2,18 +2,19 @@ package com.jfjmusic.dllo.baidumusic.model.bean;
 
 /**
  * Created by dllo on 16/9/20.
+ * 本地音乐的实体
  */
-public class MusicBean {
+public class LocalMusicBean {
     private String singer;
     private String title;
     private long duration;
     private String url;
 
-    public MusicBean() {
+    public LocalMusicBean() {
     }
 
 
-    public MusicBean(String singer, String title, long duration, String url) {
+    public LocalMusicBean(String singer, String title, long duration, String url) {
         this.singer = singer;
         this.title = title;
         this.duration = duration;

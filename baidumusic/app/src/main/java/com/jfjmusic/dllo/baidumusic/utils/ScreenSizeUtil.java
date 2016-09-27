@@ -15,7 +15,7 @@ public class ScreenSizeUtil {
      */
     public enum ScreenState {
         WIDTH,//屏幕的宽
-        HEIGHT;//屏幕的高
+        HEIGHT//屏幕的高
     }
 
     public static int getScreenSize(ScreenState state) {

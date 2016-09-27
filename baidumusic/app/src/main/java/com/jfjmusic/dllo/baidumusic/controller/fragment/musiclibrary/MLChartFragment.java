@@ -77,8 +77,7 @@ public class MLChartFragment extends AbsBaseFragment {
 
         //获取网络数据
         getNetDatas();
-        mListViewAdapter.setDatas(contentBeens);
-        listView.setAdapter(mListViewAdapter);
+
 
 
     }
@@ -99,6 +98,9 @@ public class MLChartFragment extends AbsBaseFragment {
                 L.d("集合的大小为:"+contentBeens.size());
                 L.d("榜单名:"+contentBeens.get(0).getName());
                 L.d("集合下的子集的大小:"+contentBeens.get(1).getContent().size());
+
+                mListViewAdapter.setDatas(contentBeens);
+                listView.setAdapter(mListViewAdapter);
             }
 
             @Override

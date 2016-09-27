@@ -52,9 +52,7 @@ public class MLRadioFragment extends AbsBaseFragment {
     protected void initDatas() {
         //获取网络数据
         getNetDatas();
-        mAdapter.setDatas(datas);
-        recyclerView.setAdapter(mAdapter);
-        recyclerView.setLayoutManager(new GridLayoutManager(context,4));
+
     }
 
     //获取网络数据
@@ -66,6 +64,10 @@ public class MLRadioFragment extends AbsBaseFragment {
                 Gson gson = new Gson();
                 MLRadioBean bean = gson.fromJson(resultStr, MLRadioBean.class);
                 datas = bean.getResult();
+
+                mAdapter.setDatas(datas);
+                recyclerView.setAdapter(mAdapter);
+                recyclerView.setLayoutManager(new GridLayoutManager(context,4));
             }
 
             @Override

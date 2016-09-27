@@ -4,323 +4,305 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
         <!--轮播图-->
         <FrameLayout
+            android:id="@+id/fra_ml_recommend_rotate_frame"
             android:layout_width="match_parent"
-            android:layout_height="150dp">
+            android:layout_height="300dp">
 
+            <android.support.v4.view.ViewPager
+                android:id="@+id/fra_ml_recommend_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="150dp">
+
+            </android.support.v4.view.ViewPager>
+            <LinearLayout
+                android:id="@+id/rotate_point_container"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_gravity="center|bottom"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal"/>
         </FrameLayout>
-        <!--广告位-->
-        <!--<LinearLayout-->
-            <!--android:gravity="center_vertical"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content">-->
-            <!--<ImageView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:src="@mipmap/ic_launcher"/>-->
-            <!--<LinearLayout-->
-                <!--android:orientation="vertical"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content">-->
-                <!--<TextView-->
-                    <!--android:text="祝福天下所有的老师教师节快乐"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content" />-->
-                <!--<TextView-->
-                    <!--android:text="教诲如春风,师恩似海深"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content" />-->
-            <!--</LinearLayout>-->
-        <!--</LinearLayout>-->
         <!--三个分类-->
         <android.support.v7.widget.RecyclerView
-            android:layout_margin="15dp"
             android:id="@+id/fra_ml_recommend_entry_recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="5dp">
 
         </android.support.v7.widget.RecyclerView>
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:orientation="horizontal">-->
-            <!--&lt;!&ndash;歌曲分类&ndash;&gt;-->
-            <!--<LinearLayout-->
-                <!--android:gravity="center"-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_weight="1"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:orientation="vertical">-->
-                <!--<ImageView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:src="@mipmap/ic_launcher"/>-->
-                <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:text="歌曲分类"/>-->
-            <!--</LinearLayout>-->
-            <!--&lt;!&ndash;全部歌手&ndash;&gt;-->
-            <!--<LinearLayout-->
-                <!--android:gravity="center"-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_weight="1"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:orientation="vertical">-->
-                <!--<ImageView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:src="@mipmap/ic_launcher"/>-->
-                <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:text="全部歌手"/>-->
-            <!--</LinearLayout>-->
-            <!--&lt;!&ndash;今日歌曲推荐&ndash;&gt;-->
-            <!--<LinearLayout-->
-                <!--android:gravity="center"-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_weight="1"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:orientation="vertical">-->
-                <!--<ImageView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:src="@mipmap/ic_launcher"/>-->
-                <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:text="今日歌曲推荐"/>-->
-            <!--</LinearLayout>-->
-        <!--</LinearLayout>-->
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#b6b6b6" />
+
         <!--歌单推荐-->
         <LinearLayout
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
             <ImageView
                 android:id="@+id/fra_ml_recommend_diy_icon"
                 style="@style/FragmentRecommendImgLeft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_recommend_song"/>
+                android:src="@mipmap/ic_recommend_song" />
+
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="歌单推荐"/>
+                android:layout_weight="1"
+                android:text="歌单推荐" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="更多"/>
+                android:text="更多" />
+
             <ImageView
                 style="@style/FragmentRecommendImgRight"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
+
         <android.support.v7.widget.RecyclerView
-            android:layout_margin="10dp"
             android:id="@+id/fra_ml_recommend_diy_recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
 
         </android.support.v7.widget.RecyclerView>
         <!--新碟推荐-->
         <LinearLayout
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
             <ImageView
                 android:id="@+id/fra_ml_recommend_mix1_icon"
                 style="@style/FragmentRecommendImgLeft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_recommend_song"/>
+                android:src="@mipmap/ic_recommend_song" />
+
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="新碟推荐"/>
+                android:layout_weight="1"
+                android:text="新碟推荐" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="更多"/>
+                android:text="更多" />
+
             <ImageView
                 style="@style/FragmentRecommendImgRight"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
+
         <android.support.v7.widget.RecyclerView
-            android:layout_margin="10dp"
             android:id="@+id/fra_ml_recommend_mix1_recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
 
         </android.support.v7.widget.RecyclerView>
         <!--热销专辑-->
         <LinearLayout
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
             <ImageView
                 android:id="@+id/fra_ml_recommend_mix22_icon"
                 style="@style/FragmentRecommendImgLeft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_recommend_song"/>
+                android:src="@mipmap/ic_recommend_song" />
+
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="热销专辑"/>
+                android:layout_weight="1"
+                android:text="热销专辑" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="更多"/>
+                android:text="更多" />
+
             <ImageView
                 style="@style/FragmentRecommendImgRight"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
+
         <android.support.v7.widget.RecyclerView
-            android:layout_margin="10dp"
             android:id="@+id/fra_ml_recommend_mix22_recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
 
         </android.support.v7.widget.RecyclerView>
         <!--场景电台-->
         <LinearLayout
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
             <ImageView
                 android:id="@+id/fra_ml_recommend_scene_icon"
                 style="@style/FragmentRecommendImgLeft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_recommend_song"/>
+                android:src="@mipmap/ic_recommend_song" />
+
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="场景电台"/>
+                android:layout_weight="1"
+                android:text="场景电台" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="更多"/>
+                android:text="更多" />
+
             <ImageView
                 style="@style/FragmentRecommendImgRight"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
+
         <android.support.v7.widget.RecyclerView
-            android:layout_margin="10dp"
             android:id="@+id/fra_ml_recommend_scene_recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
 
         </android.support.v7.widget.RecyclerView>
         <!--今日推荐歌曲-->
         <LinearLayout
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
             <ImageView
                 android:id="@+id/fra_ml_recommend_recsong_icon"
                 style="@style/FragmentRecommendImgLeft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_recommend_song"/>
+                android:src="@mipmap/ic_recommend_song" />
+
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="今日推荐歌曲"/>
+                android:layout_weight="1"
+                android:text="今日推荐歌曲" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="更多"/>
+                android:text="更多" />
+
             <ImageView
                 style="@style/FragmentRecommendImgRight"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
+
         <android.support.v7.widget.RecyclerView
-            android:layout_margin="10dp"
             android:id="@+id/fra_ml_recommend_recsong_recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
 
         </android.support.v7.widget.RecyclerView>
         <!--原创音乐-->
         <LinearLayout
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
             <ImageView
                 android:id="@+id/fra_ml_recommend_mix9_icon"
                 style="@style/FragmentRecommendImgLeft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_recommend_song"/>
+                android:src="@mipmap/ic_recommend_song" />
+
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="原创音乐"/>
+                android:layout_weight="1"
+                android:text="原创音乐" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="更多"/>
+                android:text="更多" />
+
             <ImageView
                 style="@style/FragmentRecommendImgRight"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
+
         <android.support.v7.widget.RecyclerView
-            android:layout_margin="10dp"
             android:id="@+id/fra_ml_recommend_mix9_recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
 
         </android.support.v7.widget.RecyclerView>
         <!--最热MV推荐-->
         <LinearLayout
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
             <ImageView
                 android:id="@+id/fra_ml_recommend_mix5_icon"
                 style="@style/FragmentRecommendImgLeft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_recommend_song"/>
+                android:src="@mipmap/ic_recommend_song" />
+
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="最热MV推荐"/>
+                android:layout_weight="1"
+                android:text="最热MV推荐" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="更多"/>
+                android:text="更多" />
+
             <ImageView
                 style="@style/FragmentRecommendImgRight"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/fra_ml_recommend_mix5_recyclerview"
             android:layout_width="match_parent"
@@ -329,30 +311,35 @@
         </android.support.v7.widget.RecyclerView>
         <!--乐播节目-->
         <LinearLayout
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
             <ImageView
                 android:id="@+id/fra_ml_recommend_radio_icon"
                 style="@style/FragmentRecommendImgLeft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_recommend_song"/>
+                android:src="@mipmap/ic_recommend_song" />
+
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="乐播节目"/>
+                android:layout_weight="1"
+                android:text="乐播节目" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="更多"/>
+                android:text="更多" />
+
             <ImageView
                 style="@style/FragmentRecommendImgRight"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/fra_ml_recommend_radio_recyclerview"
             android:layout_width="match_parent"
@@ -361,30 +348,35 @@
         </android.support.v7.widget.RecyclerView>
         <!--专栏-->
         <LinearLayout
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
             <ImageView
                 android:id="@+id/fra_ml_recommend_mod7_icon"
                 style="@style/FragmentRecommendImgLeft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_recommend_song"/>
+                android:src="@mipmap/ic_recommend_song" />
+
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="专栏"/>
+                android:layout_weight="1"
+                android:text="专栏" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="更多"/>
+                android:text="更多" />
+
             <ImageView
                 style="@style/FragmentRecommendImgRight"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/fra_ml_recommend_mod7_recyclerview"
             android:layout_width="match_parent"

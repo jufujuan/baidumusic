@@ -29,4 +29,5 @@ dependencies {
     compile 'com.google.code.gson:gson:2.7'
     compile 'com.squareup.picasso:picasso:2.3.2'
     compile 'net.qiujuer.genius:blur:2.0.0-beta4'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
 }

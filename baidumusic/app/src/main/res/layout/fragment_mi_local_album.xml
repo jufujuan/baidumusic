@@ -4,9 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <ListView
+        android:id="@+id/mi_lcoal_album_listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="本地音乐下面的专辑" />
+        android:layout_height="match_parent"/>
 </LinearLayout>

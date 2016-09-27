@@ -32,14 +32,13 @@ public abstract class AbsBaseActivity extends AppCompatActivity {
 
     protected void addAnimator(){
 
-        addAnimator();
+//        addAnimator();
     }
+
     @Override
     public void finish() {
-        /**
-         * 结束动画
-         */
-        addAnimator();
+        super.finish();
+
     }
 
     /**

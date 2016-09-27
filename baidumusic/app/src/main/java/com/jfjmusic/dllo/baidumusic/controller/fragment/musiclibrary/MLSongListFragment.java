@@ -1,5 +1,6 @@
 package com.jfjmusic.dllo.baidumusic.controller.fragment.musiclibrary;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +8,7 @@ import android.view.MotionEvent;
 
 import com.google.gson.Gson;
 import com.jfjmusic.dllo.baidumusic.R;
+import com.jfjmusic.dllo.baidumusic.controller.activity.PlayMusicActivity;
 import com.jfjmusic.dllo.baidumusic.controller.adapter.recyclerview.MLSongListRecyclerAdapter;
 import com.jfjmusic.dllo.baidumusic.controller.fragment.AbsBaseFragment;
 import com.jfjmusic.dllo.baidumusic.model.bean.MLSongLIstBean;
@@ -57,24 +59,7 @@ public class MLSongListFragment extends AbsBaseFragment {
         //获得网络数据
         getNetDatas();
 
-        mRecyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-            @Override
-            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-                List<String> songIds=new ArrayList<String>();
-                songIds=bean.getContent().get(0).getSongIds();
-                return false;
-            }
 
-            @Override
-            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-
-            }
-
-            @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
-            }
-        });
     }
     protected void getNetDatas(){
         VolleyInstance.getVolleyInstance().startRequest(Unique.ML_SONG_LIST_URL, new VolleyResult() {
@@ -82,11 +67,34 @@ public class MLSongListFragment extends AbsBaseFragment {
             public void success(String resultStr) {
                 L.d("歌单"+resultStr);
                 Gson gson=new Gson();
-                MLSongLIstBean bean=gson.fromJson(resultStr,MLSongLIstBean.class);
+                final MLSongLIstBean bean=gson.fromJson(resultStr,MLSongLIstBean.class);
                 datas=bean.getContent();
                 mAdapter.setDatas(datas);
                 mRecyclerView.setAdapter(mAdapter);
                 mRecyclerView.setLayoutManager(new GridLayoutManager(context,2));
+
+
+                mRecyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+                    @Override
+                    public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+                        List<String> songIds=new ArrayList<String>();
+                        songIds=bean.getContent().get(1).getSongIds();
+                        Intent intent=new Intent(context, PlayMusicActivity.class);
+                        intent.putStringArrayListExtra("songidlist", (ArrayList<String>) songIds);
+                        startActivity(intent);
+                        return false;
+                    }
+
+                    @Override
+                    public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+
+                    }
+
+                    @Override
+                    public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+                    }
+                });
             }
 
             @Override
