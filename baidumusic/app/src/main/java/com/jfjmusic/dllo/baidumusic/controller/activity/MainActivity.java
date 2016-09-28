@@ -50,6 +50,7 @@ import com.jfjmusic.dllo.baidumusic.model.bean.LocalMusicBean;
 import com.jfjmusic.dllo.baidumusic.model.bean.PlayBean;
 import com.jfjmusic.dllo.baidumusic.model.net.VolleyInstance;
 import com.jfjmusic.dllo.baidumusic.model.net.VolleyResult;
+import com.jfjmusic.dllo.baidumusic.utils.HttpDownloader;
 import com.jfjmusic.dllo.baidumusic.utils.L;
 import com.jfjmusic.dllo.baidumusic.utils.MusicService;
 import com.jfjmusic.dllo.baidumusic.utils.ScreenSizeUtil;
@@ -169,7 +170,7 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
         /**
          * 如果是本地音乐就播放本地音乐列表
          */
-        if (false) {
+        if (true) {
             //网络音乐
             initNetDatas();
         }else{
@@ -459,7 +460,9 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
     }
     //下载音乐
     private void downLoadMusic() {
-
+        HttpDownloader http = new HttpDownloader();
+        String result = http.download(currentUrl, "/baidumusic", "jfj3"+".mp3");
+        L.d("音乐下载的结果:"+result);
     }
 
     // 初始化PopWindow并显示
