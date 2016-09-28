@@ -129,7 +129,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@mipmap/bt_playpage_random_press" />
+            android:src="@mipmap/bt_playpage_order_press" />
 
         <ImageView
             android:id="@+id/ac_play_before"

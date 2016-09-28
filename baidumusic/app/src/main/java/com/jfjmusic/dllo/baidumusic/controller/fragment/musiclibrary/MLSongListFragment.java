@@ -8,7 +8,6 @@ import android.view.MotionEvent;
 
 import com.google.gson.Gson;
 import com.jfjmusic.dllo.baidumusic.R;
-import com.jfjmusic.dllo.baidumusic.controller.activity.PlayMusicActivity;
 import com.jfjmusic.dllo.baidumusic.controller.adapter.recyclerview.MLSongListRecyclerAdapter;
 import com.jfjmusic.dllo.baidumusic.controller.fragment.AbsBaseFragment;
 import com.jfjmusic.dllo.baidumusic.model.bean.MLSongLIstBean;
@@ -73,28 +72,28 @@ public class MLSongListFragment extends AbsBaseFragment {
                 mRecyclerView.setAdapter(mAdapter);
                 mRecyclerView.setLayoutManager(new GridLayoutManager(context,2));
 
-
-                mRecyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-                    @Override
-                    public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-                        List<String> songIds=new ArrayList<String>();
-                        songIds=bean.getContent().get(1).getSongIds();
-                        Intent intent=new Intent(context, PlayMusicActivity.class);
-                        intent.putStringArrayListExtra("songidlist", (ArrayList<String>) songIds);
-                        startActivity(intent);
-                        return false;
-                    }
-
-                    @Override
-                    public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-
-                    }
-
-                    @Override
-                    public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
-                    }
-                });
+//
+//                mRecyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+//                    @Override
+//                    public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+//                        List<String> songIds=new ArrayList<String>();
+//                        songIds=bean.getContent().get(1).getSongIds();
+//                        Intent intent=new Intent(context, PlayMusicActivity.class);
+//                        intent.putStringArrayListExtra("songidlist", (ArrayList<String>) songIds);
+//                        startActivity(intent);
+//                        return false;
+//                    }
+//
+//                    @Override
+//                    public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+//
+//                    }
+//                });
             }
 
             @Override

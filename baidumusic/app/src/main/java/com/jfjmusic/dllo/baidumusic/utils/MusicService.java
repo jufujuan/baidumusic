@@ -9,12 +9,15 @@ import android.media.MediaPlayer;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.support.annotation.MainThread;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by dllo on 16/9/23.
@@ -28,6 +31,7 @@ public class MusicService extends Service {
     //用来识别时候是否网络音乐(默认是本地音乐)
     private boolean isNetMusic = false;
     private MediaPlayer mediaPlayer;//音乐播放器
+    private static int currentMode;
 
     // private MusicReceiver musicReceiver;
     //定义一个广播接受者,接受从各个界面传来的音乐链接
@@ -37,6 +41,7 @@ public class MusicService extends Service {
         public void onReceive(Context context, Intent intent) {
             urlDatas = intent.getStringArrayListExtra("name");
             L.d("这是后台服务中得到的数据" + intent.getStringExtra("name"));
+            currentMode = intent.getIntExtra("mode", Unique.PLAY_MUSIC_MODE_ORDER);
         }
     }
 
@@ -48,6 +53,14 @@ public class MusicService extends Service {
         myBinder = new MyBinder();
         //初始化音乐播放器
         mediaPlayer = new MediaPlayer();
+        //播放结束,自动播放下一曲
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                setPlayNextMode(currentMode);
+                myBinder.nextMp3();
+            }
+        });
     }
 
     @Nullable
@@ -105,33 +118,37 @@ public class MusicService extends Service {
         //下一曲
         public void nextMp3() {
             currentIndex++;
-            if (currentIndex == urlDatas.size()) {
-                L.d("在服务器中,音乐播放列表到头了,又重来");
-                currentIndex = 0;
+            setPlayNextMode(currentMode);
+            if (currentMode==Unique.PLAY_MUSIC_MODE_ORDER&&currentIndex>=urlDatas.size()){
+                T.show("播放到头了",1000);
+            }else {
+                try {
+                    mediaPlayer.reset();
+                    mediaPlayer.setDataSource(urlDatas.get(currentIndex));
+                    mediaPlayer.prepare();
+                    mediaPlayer.start();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-            try {
-                mediaPlayer.reset();
-                mediaPlayer.setDataSource(urlDatas.get(currentIndex));
-                mediaPlayer.prepare();
-                mediaPlayer.start();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
         }
 
         //上一曲
         public void pastMp3() {
             currentIndex--;
-            if (currentIndex < 0) {
-                currentIndex = urlDatas.size() - 1;
-            }
-            try {
-                mediaPlayer.reset();
-                mediaPlayer.setDataSource(urlDatas.get(currentIndex));
-                mediaPlayer.prepare();
-                mediaPlayer.start();
-            } catch (IOException e) {
-                e.printStackTrace();
+            setPlayPastMode(currentMode);
+            if (currentMode==Unique.PLAY_MUSIC_MODE_ORDER&&currentIndex==0){
+                T.show("在播放头了",1000);
+            }else {
+                try {
+                    mediaPlayer.reset();
+                    mediaPlayer.setDataSource(urlDatas.get(currentIndex));
+                    mediaPlayer.prepare();
+                    mediaPlayer.start();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
 
         }
@@ -163,4 +180,41 @@ public class MusicService extends Service {
         }
 
     }
+    //下一曲的播放模式
+    private void setPlayNextMode(int playMode){
+        switch (playMode){
+            case Unique.PLAY_MUSIC_MODE_ORDER:
+                break;
+            case Unique.PLAY_MUSIC_MODE_ALL_RECYCLER:
+                if (currentIndex==urlDatas.size()){
+                    currentIndex=0;
+                }
+                break;
+            case Unique.PLAY_MUSIC_MODE_RANDOM:
+                currentIndex= (int) (Math.random()*urlDatas.size());
+                break;
+            case Unique.PLAY_MUSIC_MODE_SINGLE_RECYCLER:
+                currentIndex--;
+                break;
+        }
+    }
+    //上一曲的播放模式
+    private void setPlayPastMode(int playMode){
+        switch (playMode){
+            case Unique.PLAY_MUSIC_MODE_ORDER:
+                break;
+            case Unique.PLAY_MUSIC_MODE_ALL_RECYCLER:
+                if (currentIndex<0){
+                    currentIndex=0;
+                }
+                break;
+            case Unique.PLAY_MUSIC_MODE_RANDOM:
+                currentIndex= (int) (Math.random()*urlDatas.size());
+                break;
+            case Unique.PLAY_MUSIC_MODE_SINGLE_RECYCLER:
+                currentIndex++;
+                break;
+        }
+    }
 }
+

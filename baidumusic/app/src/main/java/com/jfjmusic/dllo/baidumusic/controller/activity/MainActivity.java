@@ -113,7 +113,7 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
             return false;
         }
     });
-
+    private LinearLayout leftLL,middleLL,rightLL;
     //用来控制播放模式
     private static int playModeCount=Unique.PLAY_MUSIC_MODE_ORDER;
 
@@ -145,6 +145,9 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
         timeTv = (TextView) popView.findViewById(R.id.ac_play_song_all_time);
         finishBtn = (ImageView) popView.findViewById(R.id.ac_play_music_finish);
         modeBtn = (ImageView) popView.findViewById(R.id.ac_play_state_type);
+        leftLL= (LinearLayout) LayoutInflater.from(MainActivity.this).inflate(R.layout.fragment_play_left,null);
+        middleLL= (LinearLayout) LayoutInflater.from(MainActivity.this).inflate(R.layout.fragment_play_middle,null);
+        rightLL= (LinearLayout) LayoutInflater.from(MainActivity.this).inflate(R.layout.fragment_play_right,null);
     }
 
     @Override
@@ -165,11 +168,13 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
             //本地音乐
             getMp3Info();
             currentUrl=urlDatas.get(0);
-            Intent intentMusic = new Intent();
-            intentMusic.setAction("com.jfjmusic.dllo.baidumusic.utils.MusicReceiver");
-            intentMusic.putStringArrayListExtra("name", (ArrayList<String>) urlDatas);
-            sendBroadcast(intentMusic);
         }
+        Intent intentMusic = new Intent();
+        intentMusic.setAction("com.jfjmusic.dllo.baidumusic.utils.MusicReceiver");
+        intentMusic.putStringArrayListExtra("name", (ArrayList<String>) urlDatas);
+        //默认顺序播放模式
+        intentMusic.putExtra("mode",Unique.PLAY_MUSIC_MODE_ORDER);
+        sendBroadcast(intentMusic);
         //设置组件的监听
         setListener();
     }
@@ -285,7 +290,7 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
                 if (progress==seekBar.getMax()){
                     pauseBtn.setImageResource(R.mipmap.bt_widget_play_press);
                     playMainBtn.setImageResource(R.mipmap.bt_minibar_play_normal);
-                    seekBar.setProgress(0);
+                    musicBinder.stopMp3();
                     musicBinder.nextMp3();
                 }
             }
@@ -408,25 +413,33 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
                 break;
             case R.id.ac_play_state_type:
                 playModeCount++;
+                Intent intentMusic = new Intent();
+                intentMusic.setAction("com.jfjmusic.dllo.baidumusic.utils.MusicReceiver");
+                intentMusic.putStringArrayListExtra("name", (ArrayList<String>) urlDatas);
                 switch (playModeCount){
                     case Unique.PLAY_MUSIC_MODE_ORDER:
-                        T.show("随机播放",1000);
-                        modeBtn.setImageResource(R.mipmap.bt_playpage_random_press);
+                        T.show("顺序播放",1000);
+                        intentMusic.putExtra("mode",Unique.PLAY_MUSIC_MODE_ORDER);
+                        modeBtn.setImageResource(R.mipmap.bt_playpage_order_press);
                         break;
                     case Unique.PLAY_MUSIC_MODE_SINGLE_RECYCLER:
-                        modeBtn.setImageResource(R.mipmap.bt_playpage_order_press);
-                        T.show("顺序播放",1000);
-                        break;
-                    case Unique.PLAY_MUSIC_MODE_ALL_RECYCLER:
+                        intentMusic.putExtra("mode",Unique.PLAY_MUSIC_MODE_SINGLE_RECYCLER);
                         modeBtn.setImageResource(R.mipmap.bt_playpage_roundsingle_press);
                         T.show("单曲循环",1000);
                         break;
-                    case Unique.PLAY_MUSIC_MODE_RANDOM:
+                    case Unique.PLAY_MUSIC_MODE_ALL_RECYCLER:
+                        intentMusic.putExtra("mode",Unique.PLAY_MUSIC_MODE_ALL_RECYCLER);
                         modeBtn.setImageResource(R.mipmap.bt_playpage_loop_press);
                         T.show("循环播放",1000);
+                        break;
+                    case Unique.PLAY_MUSIC_MODE_RANDOM:
+                        intentMusic.putExtra("mode",Unique.PLAY_MUSIC_MODE_RANDOM);
+                        modeBtn.setImageResource(R.mipmap.bt_playpage_random_press);
+                        T.show("随机播放",1000);
                         playModeCount=0;
                         break;
                 }
+                sendBroadcast(intentMusic);
                 break;
         }
     }
@@ -447,7 +460,11 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
 
     //初始化PopWindows的数据
     private void initPopWindows() {
-//        playAdapter=new PlayAcViewPagerAdapter(getSupportFragmentManager(),this);
+        List<LinearLayout> linearLayouts=new ArrayList<>();
+        linearLayouts.add(leftLL);
+        linearLayouts.add(middleLL);
+        linearLayouts.add(rightLL);
+        playAdapter=new PlayAcViewPagerAdapter(linearLayouts);
 //        fragments=new ArrayList<>();
 //        fragments.add(LeftPlayFragment.newInstance());
 //        fragments.add(MiddlePlayFragment.newInstance());
