@@ -116,6 +116,12 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
     private LinearLayout leftLL,middleLL,rightLL;
     //用来控制播放模式
     private static int playModeCount=Unique.PLAY_MUSIC_MODE_ORDER;
+    //popwindows的viewpager中的空间
+    private ImageView middleImg;
+    private ImageView middleDownLoad;
+    private int height = ScreenSizeUtil.getScreenSize(ScreenSizeUtil.ScreenState.WIDTH) -120;
+    private int width = ScreenSizeUtil.getScreenSize(ScreenSizeUtil.ScreenState.WIDTH) -120;
+
 
     @Override
     protected int setLayout() {
@@ -145,9 +151,11 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
         timeTv = (TextView) popView.findViewById(R.id.ac_play_song_all_time);
         finishBtn = (ImageView) popView.findViewById(R.id.ac_play_music_finish);
         modeBtn = (ImageView) popView.findViewById(R.id.ac_play_state_type);
-        leftLL= (LinearLayout) LayoutInflater.from(MainActivity.this).inflate(R.layout.fragment_play_left,null);
-        middleLL= (LinearLayout) LayoutInflater.from(MainActivity.this).inflate(R.layout.fragment_play_middle,null);
-        rightLL= (LinearLayout) LayoutInflater.from(MainActivity.this).inflate(R.layout.fragment_play_right,null);
+        leftLL= (LinearLayout) LayoutInflater.from(this).inflate(R.layout.fragment_play_left,null);
+        middleLL= (LinearLayout) LayoutInflater.from(this).inflate(R.layout.fragment_play_middle,null);
+        rightLL= (LinearLayout) LayoutInflater.from(this).inflate(R.layout.fragment_play_right,null);
+        middleImg = (ImageView) middleLL.findViewById(R.id.pop_middle_img);
+        middleDownLoad= (ImageView) middleLL.findViewById(R.id.middle_download);
     }
 
     @Override
@@ -274,6 +282,7 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
         beforeBtn.setOnClickListener(this);
         finishBtn.setOnClickListener(this);
         modeBtn.setOnClickListener(this);
+        middleDownLoad.setOnClickListener(this);
         //实现快进快退,给进度条状态设置监听事件
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -441,7 +450,16 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
                 }
                 sendBroadcast(intentMusic);
                 break;
+            //音乐下载按钮
+            case R.id.middle_download:
+                T.show("已加入到歌曲列表",1000);
+                downLoadMusic();
+                break;
         }
+    }
+    //下载音乐
+    private void downLoadMusic() {
+
     }
 
     // 初始化PopWindow并显示
@@ -450,12 +468,13 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
         v.getLocationOnScreen(lcoation);
         popupWindow = new PopupWindow(WindowManager.LayoutParams.MATCH_PARENT,
                 ScreenSizeUtil.getScreenSize(ScreenSizeUtil.ScreenState.HEIGHT) - getStatusBarHeight());
-        Bitmap bb = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+        Bitmap bb = BitmapFactory.decodeResource(getResources(), R.mipmap.scan_first);
         Drawable bg = new BitmapDrawable(getBlurBitmap(bb));
         popupWindow.setBackgroundDrawable(bg);
         popupWindow.setContentView(popView);
         popupWindow.setFocusable(true);
         popupWindow.showAtLocation(textMiniBarLL, Gravity.NO_GRAVITY, lcoation[0], getStatusBarHeight());
+
     }
 
     //初始化PopWindows的数据
@@ -465,17 +484,16 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
         linearLayouts.add(middleLL);
         linearLayouts.add(rightLL);
         playAdapter=new PlayAcViewPagerAdapter(linearLayouts);
-//        fragments=new ArrayList<>();
-//        fragments.add(LeftPlayFragment.newInstance());
-//        fragments.add(MiddlePlayFragment.newInstance());
-//        fragments.add(RightPlayFragment.newInstance());
-//        playAdapter.setFragments(fragments);
-//        popViewPager.setAdapter(playAdapter);
-//      //  popViewPager.setCurrentItem(0);
-//        popTabLayout.setupWithViewPager(popViewPager);
-//        for (int i = 0; i < fragments.size(); i++) {
-//            popTabLayout.getTabAt(i).setCustomView(playAdapter.getTabView(i));
-//        }
+        popViewPager.setAdapter(playAdapter);
+        popViewPager.setCurrentItem(1);
+        popTabLayout.setupWithViewPager(popViewPager);
+        for (int i = 0; i < linearLayouts.size(); i++) {
+            popTabLayout.getTabAt(i).setCustomView(R.layout.item_ac_play);
+        }
+        LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(height,width);
+        //middleImg.setMaxWidth(width);
+       // middleImg.setMaxHeight(height);
+        middleImg.setLayoutParams(params);
     }
 
     /**
@@ -534,7 +552,7 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
         // 新的压缩位图
         Bitmap mCompressBitmap = Bitmap.createBitmap(mBitmap, 0, 0,
                 mBitmap.getWidth(), mBitmap.getHeight(), matrix, true);
-        mCompressBitmap = StackBlur.blurNatively(mCompressBitmap, (int) 1, false);
+        mCompressBitmap = StackBlur.blurNatively(mCompressBitmap, (int) 4, false);
         return mCompressBitmap;
     }
 

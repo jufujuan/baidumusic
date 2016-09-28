@@ -20,6 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".controller.activity.PlayMusicActivity">
+
+        </activity>
 
         <!--注册音乐播放服务中的广播接收者-->
         <receiver android:name=".utils.MusicService$MusicReceiver">

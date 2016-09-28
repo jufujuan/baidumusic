@@ -4,7 +4,6 @@
     android:id="@+id/ac_play_music_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#b4b4b4"
     android:orientation="vertical">
 
     <LinearLayout

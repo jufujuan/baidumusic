@@ -28,6 +28,7 @@ public class PlayAcViewPagerAdapter extends PagerAdapter {
 
     public PlayAcViewPagerAdapter(List<LinearLayout> linearLayouts) {
         this.linearLayouts = linearLayouts;
+        notifyDataSetChanged();
     }
 
     /**
@@ -59,8 +60,9 @@ public class PlayAcViewPagerAdapter extends PagerAdapter {
      */
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        container.addView(linearLayouts.get(position));
-        return super.instantiateItem(container, position);
+        View v = linearLayouts.get(position);
+        container.addView(v);
+        return v;
     }
     /**
      * pageradpater只缓存三个要显示的LinearLayout,如果滑动的图片超过了缓存的范围
@@ -70,35 +72,4 @@ public class PlayAcViewPagerAdapter extends PagerAdapter {
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView(linearLayouts.get(position));
     }
-    //private TextView textView;
-//
-//    public PlayAcViewPagerAdapter(FragmentManager fm, Context context) {
-//        super(fm);
-//        this.context = context;
-//    }
-//
-//    public void setFragments(List<Fragment> fragments) {
-//        this.fragments = fragments;
-//        notifyDataSetChanged();
-//    }
-//
-//    public PlayAcViewPagerAdapter(FragmentManager fm) {
-//        super(fm);
-//    }
-//
-//    @Override
-//    public Fragment getItem(int position) {
-//        return fragments.get(position);
-//    }
-//
-//    @Override
-//    public int getCount() {
-//        return fragments.size();
-//    }
-//    public View getTabView(int position) {
-//        View v = LayoutInflater.from(context).inflate(R.layout.item_ac_play, null);
-//       // textView = (TextView) v.findViewById(R.id.item_ac_play);
-//        return v;
-//    }
-
 }

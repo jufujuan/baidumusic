@@ -1,34 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
     android:layout_margin="20dp"
     android:gravity="center"
-    android:layout_height="match_parent"
     android:orientation="vertical">
-    <ImageView
-        android:scaleType="fitXY"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/scan_first"/>
-    <LinearLayout
 
-        android:orientation="horizontal"
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <ImageView
+        android:id="@+id/pop_middle_img"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5.5"
+        android:scaleType="fitXY"
+        android:src="@mipmap/scan_first" />
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="20dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
         <ImageView
-            android:layout_weight="1"
+            android:id="@+id/middle_download"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/bt_playpage_button_download_press"/>
-        <ImageView
             android:layout_weight="1"
+            android:src="@mipmap/bt_playpage_button_download_press" />
+
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/bt_playpage_button_like_press"/>
-        <ImageView
             android:layout_weight="1"
+            android:src="@mipmap/bt_playpage_button_like_press" />
+
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/bt_playpage_moreactions_press"/>
+            android:layout_weight="1"
+            android:src="@mipmap/bt_playpage_moreactions_press" />
     </LinearLayout>
 </LinearLayout>
