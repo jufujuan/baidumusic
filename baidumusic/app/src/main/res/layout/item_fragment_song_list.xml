@@ -19,7 +19,7 @@
             android:src="@mipmap/new_song" />
 
         <LinearLayout
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:orientation="horizontal"
             android:gravity="bottom"
             android:layout_width="match_parent"
@@ -29,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:padding="10dp"
+                android:padding="3dp"
                 android:id="@+id/fra_ml_song_list_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -38,13 +38,12 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:gravity="bottom|right"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ImageView
-                android:scaleType="fitXY"
-                android:padding="5dp"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/fra_chart_small_icon"/>

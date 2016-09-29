@@ -11,7 +11,7 @@ public final class Unique {
     public final static String MAIN_AC_ACTION="com.jfjmusic.dllo.baidumusic.controller.activity";
 
     /**
-     * minefragment发送广播的本地音乐广播发送的类型
+     * minefragment发送广播的 本地音乐 广播发送的类型
      */
     public final static int MINE_LOCAL_MUSIC_TYPE=1;
     /**
@@ -19,9 +19,13 @@ public final class Unique {
      */
     public final static int MINE_CURRENT_PLAY_TYPE=2;
     /**
-     * 排行榜界面发送广播的最近播放广播发送的类型
+     * 排行榜界面发送广播的 最近播放 广播发送的类型
      */
     public final static int MUSICL_CHART_PLAY_TYPE=3;
+    /**
+     * minefragment发送广播的 下载管理 广播发送的类型
+     */
+    public final static int MINE_DOWNLOAD_TYPE=4;
 
     /**
      * 排行榜界面的网址

@@ -9,8 +9,9 @@ import java.util.List;
 
 /**
  * Created by dllo on 16/9/13.
+ * 我的——本地音乐——的适配器
  */
-public class MiViewPagerAdapter extends FragmentPagerAdapter{
+public class MiLocalViewPagerAdapter extends FragmentPagerAdapter{
 
     private List<Fragment> fragments;
     private Context context;
@@ -24,7 +25,7 @@ public class MiViewPagerAdapter extends FragmentPagerAdapter{
         this.title = title;
     }
 
-    public MiViewPagerAdapter(FragmentManager fm, Context context) {
+    public MiLocalViewPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
         this.context = context;
     }
@@ -33,7 +34,7 @@ public class MiViewPagerAdapter extends FragmentPagerAdapter{
         this.context = context;
     }
 
-    public MiViewPagerAdapter(FragmentManager fm) {
+    public MiLocalViewPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 

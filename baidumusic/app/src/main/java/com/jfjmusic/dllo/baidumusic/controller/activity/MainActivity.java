@@ -41,6 +41,7 @@ import com.google.gson.Gson;
 import com.jfjmusic.dllo.baidumusic.R;
 import com.jfjmusic.dllo.baidumusic.controller.adapter.viewpager.PlayAcViewPagerAdapter;
 import com.jfjmusic.dllo.baidumusic.controller.fragment.mine.MICurrentPlayFragment;
+import com.jfjmusic.dllo.baidumusic.controller.fragment.mine.MiDownLoadFragment;
 import com.jfjmusic.dllo.baidumusic.controller.fragment.mine.MiLocalMusicFragment;
 import com.jfjmusic.dllo.baidumusic.controller.fragment.MainFragment;
 import com.jfjmusic.dllo.baidumusic.controller.fragment.play.LeftPlayFragment;
@@ -587,6 +588,11 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
                         mineTransaction.addToBackStack(null);
                         //如果是"最近播放"传来的广播
                         mineTransaction.replace(R.id.main_framelayout, MICurrentPlayFragment.newInstance());
+                        break;
+                    case  Unique.MINE_DOWNLOAD_TYPE:
+                        //下载管理传传过来的广播
+                        mineTransaction.addToBackStack(null);
+                        mineTransaction.replace(R.id.main_framelayout, MiDownLoadFragment.newInstance());
                         break;
 
                 }

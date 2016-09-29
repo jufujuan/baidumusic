@@ -18,7 +18,7 @@ import com.jfjmusic.dllo.baidumusic.utils.Unique;
 public class MineFragment extends AbsBaseFragment implements View.OnClickListener {
 
     private LinearLayout localmusicLinearLayout;
-    private LinearLayout currentplayLinearLayout;
+    private LinearLayout currentplayLinearLayout,downLoadLL;
     private MiLocalMusicFragment localMusicFragment;
     private FragmentManager manager;
     private FragmentTransaction transaction;
@@ -40,6 +40,7 @@ public class MineFragment extends AbsBaseFragment implements View.OnClickListene
     protected void initViews() {
         localmusicLinearLayout = byView(R.id.fra_local_music_item);
         currentplayLinearLayout=byView(R.id.fra_current_play_item);
+        downLoadLL=byView(R.id.fra_mi_download_manager);
     }
 
     @Override
@@ -58,6 +59,7 @@ public class MineFragment extends AbsBaseFragment implements View.OnClickListene
          */
         localmusicLinearLayout.setOnClickListener(this);
         currentplayLinearLayout.setOnClickListener(this);
+        downLoadLL.setOnClickListener(this);
     }
 
 
@@ -74,6 +76,9 @@ public class MineFragment extends AbsBaseFragment implements View.OnClickListene
                 break;
             case R.id.fra_current_play_item:
                 intent.putExtra("type",Unique.MINE_CURRENT_PLAY_TYPE);
+                break;
+            case R.id.fra_mi_download_manager:
+                intent.putExtra("type",Unique.MINE_DOWNLOAD_TYPE);
                 break;
         }
         context.sendBroadcast(intent);
