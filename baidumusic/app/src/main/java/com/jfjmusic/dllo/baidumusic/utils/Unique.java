@@ -9,6 +9,10 @@ public final class Unique {
      * 用于替换占位布局的广播的action
      */
     public final static String MAIN_AC_ACTION="com.jfjmusic.dllo.baidumusic.controller.activity";
+    /**
+     * 用于排行榜详情(二级页面)传值的广播的action
+     */
+    public final static String CHART_ACTION="com.jfjmusic.dllo.baidumusic.controller.fragment.musiclibrary.MLChartDetailsFragment";
 
     /**
      * minefragment发送广播的 本地音乐 广播发送的类型
@@ -26,6 +30,10 @@ public final class Unique {
      * minefragment发送广播的 下载管理 广播发送的类型
      */
     public final static int MINE_DOWNLOAD_TYPE=4;
+    /**
+     * 通知activity占位布局替换(二级界面排行榜详情界面)
+     */
+    public final static int ML_CHART_DETAILS=5;
 
     /**
      * 排行榜界面的网址
@@ -109,4 +117,9 @@ public final class Unique {
      * 音乐列表的播放模式-----随机播放模式
      */
     public static final int PLAY_MUSIC_MODE_RANDOM = 4;
+
+    /**
+     * 排行榜详情网址
+     */
+    public static final String CHART_DETAILS_URL = "http://tingapi.ting.baidu.com/v1/restserver/ting?method=baidu.ting.billboard.billList&type=参数&format=json&offset=0&size=50&from=ios&fields=title,song_id,author,resource_type,havehigh,is_new,has_mv_mobile,album_title,ting_uid,album_id,charge,all_rate&version=5.2.1&from=ios&channel=appstore";
 }

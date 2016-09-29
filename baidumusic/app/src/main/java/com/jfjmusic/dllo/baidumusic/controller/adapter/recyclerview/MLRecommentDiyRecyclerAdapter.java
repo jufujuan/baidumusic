@@ -32,8 +32,9 @@ public class MLRecommentDiyRecyclerAdapter extends RecyclerView.Adapter<MLRecomm
     private ViewHolder viewHolder;
     private List<MLRecommendBean.ResultBean.DiyBean.DiyResultBean> datas;
 
-    private int height = ScreenSizeUtil.getScreenSize(ScreenSizeUtil.ScreenState.WIDTH) / 3 - 40;
     private int width = ScreenSizeUtil.getScreenSize(ScreenSizeUtil.ScreenState.WIDTH) / 3 - 40;
+    private int height = ScreenSizeUtil.getScreenSize(ScreenSizeUtil.ScreenState.WIDTH) / 3 - 40;
+
 
     public MLRecommentDiyRecyclerAdapter(Context context) {
         this.context = context;
@@ -46,7 +47,7 @@ public class MLRecommentDiyRecyclerAdapter extends RecyclerView.Adapter<MLRecomm
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_fragment_song_list, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_fragment_recommend_song_list, parent, false);
         viewHolder = new ViewHolder(view);
         return viewHolder;
     }
@@ -71,7 +72,7 @@ public class MLRecommentDiyRecyclerAdapter extends RecyclerView.Adapter<MLRecomm
 
        // Picasso.with(context).load(datas.get(position).getPic_300()).resize(height, width).into(viewHolder.img);
         holder.titleTv.setText(datas.get(position).getTitle());
-        holder.typetv.setText(datas.get(position).getTag());
+        holder.numberTv.setText(String.valueOf(datas.get(position).getListenum()));
 
         final String imgurl = datas.get(position).getPic();
         /**
@@ -124,14 +125,13 @@ public class MLRecommentDiyRecyclerAdapter extends RecyclerView.Adapter<MLRecomm
         private ImageView img;
         private TextView numberTv;
         private TextView titleTv;
-        private TextView typetv;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            img = (ImageView) itemView.findViewById(R.id.fra_ml_song_list_img);
-            numberTv = (TextView) itemView.findViewById(R.id.fra_ml_song_list_number);
-            titleTv = (TextView) itemView.findViewById(R.id.fra_ml_song_list_title);
-            typetv = (TextView) itemView.findViewById(R.id.fra_ml_song_list_type);
+            img = (ImageView) itemView.findViewById(R.id.fra_ml_recommend_song_list_img);
+            numberTv = (TextView) itemView.findViewById(R.id.fra_ml_recommend_song_list_number);
+            titleTv = (TextView) itemView.findViewById(R.id.fra_ml_recommend_song_list_title);
         }
     }
+
 }

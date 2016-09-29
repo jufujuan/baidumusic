@@ -1,6 +1,12 @@
 package com.jfjmusic.dllo.baidumusic.controller.fragment.musiclibrary;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
@@ -13,6 +19,7 @@ import com.jfjmusic.dllo.baidumusic.model.net.VolleyResult;
 import com.jfjmusic.dllo.baidumusic.utils.L;
 import com.jfjmusic.dllo.baidumusic.utils.Unique;
 
+import java.nio.Buffer;
 import java.util.List;
 
 /**
@@ -21,14 +28,12 @@ import java.util.List;
  */
 public class MLChartFragment extends AbsBaseFragment {
 
-
-
     private MLChartListViewAdapter mListViewAdapter;
-    //private List<MLChartBean> datas;
     private List<MLChartBean.ContentBean> contentBeens;
+    private MLChartBean bean;
     private ListView listView;
-
     private Gson gson;
+
 
     public static MLChartFragment newInstance() {
 
@@ -38,6 +43,7 @@ public class MLChartFragment extends AbsBaseFragment {
         fragment.setArguments(args);
         return fragment;
     }
+
     @Override
     protected int setLayout() {
         return R.layout.fragment_ml_chart;
@@ -45,68 +51,58 @@ public class MLChartFragment extends AbsBaseFragment {
 
     @Override
     protected void initViews() {
-        listView=byView(R.id.ml_chart_listview);
-        //datas=new ArrayList<>();
-        mListViewAdapter=new MLChartListViewAdapter(context);
-
+        listView = byView(R.id.ml_chart_listview);
+        mListViewAdapter = new MLChartListViewAdapter(context);
 
     }
 
     @Override
     protected void initDatas() {
 
-//        List<String> title=new ArrayList<>();
-//        title.add("微微一笑很倾城");
-//        title.add("下一秒");
-//        title.add("江湖");
-//        for (int i = 0; i <13 ; i++) {
-//            datas.add(new MLChartBean(R.mipmap.new_song,"新歌榜",title));
-//        }
-//
-//
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                T.show("新歌榜被点击了",2000);
-//                Intent intent=new Intent();
-//                intent.setAction(Unique.MAIN_AC_ACTION);
-//                intent.putExtra("type",Unique.MUSICL_CHART_PLAY_TYPE);
-//                context.sendBroadcast(intent);
-//            }
-//        });
-
         //获取网络数据
         getNetDatas();
+        //榜单点击事件
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                /**
+                 * 发送广播,通知activity的占位布局更换
+                 */
+                Intent intent = new Intent();
+                intent.setAction(Unique.MAIN_AC_ACTION);
+                intent.putExtra("type", Unique.ML_CHART_DETAILS);
+                intent.putExtra("urlType",String.valueOf(contentBeens.get(position).getType()));
+                context.sendBroadcast(intent);
 
-
-
+            }
+        });
     }
+
     //获取网络数据
-    protected void getNetDatas(){
+    protected void getNetDatas() {
         VolleyInstance.getVolleyInstance().startRequest(Unique.ML_CHART_URL, new VolleyResult() {
             @Override
             public void success(String resultStr) {
-                L.d("排行"+resultStr);
-                gson=new Gson();
-                MLChartBean datas= gson.fromJson(resultStr,MLChartBean.class);
-                if (datas==null){
+                L.d("排行" + resultStr);
+                gson = new Gson();
+                bean = gson.fromJson(resultStr, MLChartBean.class);
+                if (bean == null) {
                     L.d("数集为空");
-                }else{
+                } else {
                     L.d("数集不为空");
                 }
-                contentBeens=datas.getContent();
-                L.d("集合的大小为:"+contentBeens.size());
-                L.d("榜单名:"+contentBeens.get(0).getName());
-                L.d("集合下的子集的大小:"+contentBeens.get(1).getContent().size());
-
+                contentBeens = bean.getContent();
                 mListViewAdapter.setDatas(contentBeens);
                 listView.setAdapter(mListViewAdapter);
             }
-
             @Override
             public void failure() {
                 L.d("失败");
             }
         });
     }
+
+
+
+
 }

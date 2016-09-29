@@ -1,16 +1,19 @@
 package com.jfjmusic.dllo.baidumusic.controller.fragment.musiclibrary;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.jfjmusic.dllo.baidumusic.R;
@@ -39,7 +42,7 @@ import java.util.List;
  * Created by dllo on 16/9/10.
  * 乐库————>推荐————界面
  */
-public class MLRecommendFragment extends AbsBaseFragment {
+public class MLRecommendFragment extends AbsBaseFragment implements View.OnClickListener {
 
     private List<MLRecommendBean.ResultBean.Mix1Bean.Mix1ResultBean> mix1Datas;//新碟上架
     private List<MLRecommendBean.ResultBean.FocusBean.FocusResultBean> focusDatas;//轮播图
@@ -72,6 +75,8 @@ public class MLRecommendFragment extends AbsBaseFragment {
     private Runnable rotateRunnable;
     private static final int TIME = 3000;
     private FrameLayout frameLayout;
+    private TextView diyMore;
+
 
     public static MLRecommendFragment newInstance() {
 
@@ -113,13 +118,21 @@ public class MLRecommendFragment extends AbsBaseFragment {
         mix5Adapter=new MLRecommendMix5RecyclerAdapter(context);
         radioAdapter=new MLRecommendRadioRecyclerAdapter(context);
         mod7Adapter=new MLRecommendMod7RecyclerAdapter(context);
+
+        diyMore=byView(R.id.fra_ml_recommend_diy_more);
     }
 
     @Override
     protected void initDatas() {
+        //设置监听事件
+        setListener();
         //获取网络数据
         getNetDatas();
 
+    }
+
+    private void setListener() {
+        diyMore.setOnClickListener(this);
     }
 
     protected void getNetDatas(){
@@ -283,5 +296,15 @@ public class MLRecommendFragment extends AbsBaseFragment {
     public void onPause() {
         super.onPause();
         isRotate = false;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.fra_ml_recommend_diy_more:
+                //跳转到歌单界面
+
+                break;
+        }
     }
 }

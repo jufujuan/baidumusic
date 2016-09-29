@@ -44,6 +44,7 @@ import com.jfjmusic.dllo.baidumusic.controller.fragment.mine.MICurrentPlayFragme
 import com.jfjmusic.dllo.baidumusic.controller.fragment.mine.MiDownLoadFragment;
 import com.jfjmusic.dllo.baidumusic.controller.fragment.mine.MiLocalMusicFragment;
 import com.jfjmusic.dllo.baidumusic.controller.fragment.MainFragment;
+import com.jfjmusic.dllo.baidumusic.controller.fragment.musiclibrary.MLChartDatilsFragment;
 import com.jfjmusic.dllo.baidumusic.controller.fragment.play.LeftPlayFragment;
 import com.jfjmusic.dllo.baidumusic.controller.fragment.play.MiddlePlayFragment;
 import com.jfjmusic.dllo.baidumusic.controller.fragment.play.RightPlayFragment;
@@ -171,7 +172,7 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
         /**
          * 如果是本地音乐就播放本地音乐列表
          */
-        if (true) {
+        if (false) {
             //网络音乐
             initNetDatas();
         }else{
@@ -593,6 +594,11 @@ public class MainActivity extends AbsBaseActivity implements View.OnClickListene
                         //下载管理传传过来的广播
                         mineTransaction.addToBackStack(null);
                         mineTransaction.replace(R.id.main_framelayout, MiDownLoadFragment.newInstance());
+                        break;
+                    case Unique.ML_CHART_DETAILS:
+                        //乐库排行榜传过来的广播
+                        mineTransaction.addToBackStack(null);
+                        mineTransaction.replace(R.id.main_framelayout, MLChartDatilsFragment.newInstance(intent.getStringExtra("urlType")));
                         break;
 
                 }

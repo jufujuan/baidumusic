@@ -4,5 +4,5 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <!--音乐播放界面-->
     <!--上方标题栏的左边距-->
-
+<dimen name="common_margin">5dp</dimen>
 </resources>
